@@ -47,15 +47,17 @@ All prices are RRP references; site instructs promoters to quote the live iShopC
 - Product sections are infographic-style, not text-heavy (redesigned 2026-06-13): big-number stat tiles (.statgrid/.stat), small fact chips, emoji persona chips (.personas), chat-style objection bubbles (.duo/.bub they|you), numbered 60-second demo steps (.demosteps), gold honesty badges (.honesty) for the Liberty in-person-only and AINOTE simultaneity disclosures. Keep new copy in this compressed format — no bullet walls
 - Motion (Emil Kowalski design-engineering rules — preserve): custom curves `--ease: cubic-bezier(.23,1,.32,1)` / `--ease-io: cubic-bezier(.77,0,.175,1)`; UI transitions ≤300ms; `scale(.97)` on :active for all pressables; no `transition: all`; hover effects gated behind `@media (hover:hover) and (pointer:fine)`; staggered scroll reveals (50ms steps, IntersectionObserver, once); accordion via `grid-template-rows: 0fr→1fr`
 - Accessibility: focus-visible gold outlines, prefers-reduced-motion (keeps fades, drops movement/marquee/flip) — preserve these
+- Affordance conventions (preserve): everything clickable carries an explicit cue — gold "TAP TO FLIP ⇄" badge on flip cards, cyan TAP/CLOSE pill on accordions, radio circles on quiz/roleplay options, "↓ TAP TO JUMP" on product index cards, underline-on-hover nav links. Non-clickable chips/personas/badges use near-invisible borders (rgba(125,145,255,.10)) so they don't read as buttons. Flip cards use grid-stacked faces (grid-area:1/1) so the card grows with its content — never absolute-position the faces
 
-## Site structure (7 modules, in-page anchors)
+## Site structure (8 modules, in-page anchors)
 1. #flow — 5-step sales flow + GST-savings close banner
 2. #products — quick-jump index grid + 6 full poster-style product sections (all visible, no tabs): lifestyle photo panel, price bar, stat tiles + fact chips, flip card (pitch front / "why it works" back), persona chips, they-say/you-say bubbles, 60-second demo steps, honesty badge where needed, buy+video links
-3. #compare — spec cheat-sheet table
-4. #matcher — accordion "customer says → recommend"
-5. #roleplay — 3-scenario simulator with graded options (best/meh/bad) + coaching
-6. #quiz — 10 questions, instant feedback, score ≥9 = certified, retake button
-7. #conduct — Do's/Don'ts + logistics cards
+3. #handson — Hands-on lab / device playbook: per-device accordion (controls table, money-demo steps, "confirm on the real unit" checkboxes for anything unit-specific — never state unverified operation details as fact) + gold "demo rescue" card
+4. #compare — spec cheat-sheet table
+5. #matcher — accordion "customer says → recommend"
+6. #roleplay — 3-scenario simulator with graded options (best/meh/bad) + coaching
+7. #quiz — 10 questions, instant feedback, score ≥9 = certified, retake button
+8. #conduct — Do's/Don'ts + logistics cards
 Plus: sticky nav with module progress pill (in-memory only), event countdown to 2026-06-19T12:00+08:00.
 
 ## Constraints

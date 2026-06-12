@@ -67,7 +67,7 @@ a{color:var(--cyan)}
 .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .topbar a{color:var(--dim);text-decoration:none;flex:none;transition:color 150ms ease}
-.topbar a:hover{color:var(--ink)}
+.topbar a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--cyan)}
 .topbar .gap{flex:1}
 #progressPill{flex:none;background:var(--glass);border:1px solid var(--line2);border-radius:999px;padding:4px 13px;color:var(--cyan)}
 
@@ -83,7 +83,7 @@ a{color:var(--cyan)}
 .hero .sub{color:var(--dim);max-width:64ch;margin:24px auto 0;font-size:16px}
 .hero .sub b{color:var(--ink)}
 .badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
-.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);background:var(--glass);
+.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(125,145,255,.12);background:var(--glass);
   border-radius:12px;padding:11px 16px;font-family:'Space Grotesk',monospace;font-size:12.5px;color:var(--dim)}
 .badge b{color:var(--ink);font-weight:600}
 .badge .ic{color:var(--blue)}
@@ -162,6 +162,8 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2.5px soli
 .pidx .no{font-family:'Space Grotesk',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--faint)}
 .pidx .nm{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;color:var(--ink);line-height:1.25}
 .pidx .cat{font-size:11px;color:var(--dim)}
+.pidx::after{content:"↓ TAP TO JUMP";margin-top:7px;font-family:'Space Grotesk',monospace;font-size:9px;letter-spacing:.2em;color:var(--faint);transition:color 150ms ease}
+@media (hover:hover) and (pointer:fine){.pidx:hover::after{color:var(--cyan)}}
 @media (hover:hover) and (pointer:fine){.pidx:hover{border-color:var(--blue);transform:translateY(-2px)}}
 
 .prod{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:42px;align-items:start;
@@ -195,16 +197,20 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2.5px soli
   background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.4);color:var(--gold);border-radius:999px;padding:5px 12px}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
-.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:var(--glass);
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(125,145,255,.1);background:var(--glass);
   border-radius:11px;padding:9px 13px;font-family:'Space Grotesk',monospace;font-size:12px;color:var(--ink)}
 .chip .ic{color:var(--blue)}
 
 /* pitch flip card */
-.pitchflip{perspective:1100px;margin-bottom:22px;cursor:pointer}
-.pitchinner{position:relative;transform-style:preserve-3d;min-height:148px;
+.pitchflip{perspective:1100px;margin:14px 0 22px;cursor:pointer;position:relative}
+.pitchflip::after{content:"TAP TO FLIP ⇄";position:absolute;top:-9px;right:14px;z-index:2;
+  font-family:'Space Grotesk',monospace;font-size:9px;letter-spacing:.16em;color:var(--gold);
+  background:#0b0d20;border:1px solid rgba(255,209,102,.55);border-radius:999px;padding:3px 10px;pointer-events:none}
+.pitchinner{display:grid;transform-style:preserve-3d;
   transition:transform 480ms var(--ease-io)}
 .pitchflip.flipped .pitchinner{transform:rotateY(180deg)}
-.pface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:19px 22px;
+/* grid-stacked faces: container height = tallest face, so text never overflows */
+.pface{grid-area:1/1;min-height:148px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:19px 22px;
   display:flex;flex-direction:column;justify-content:center}
 .pface.front{background:linear-gradient(135deg,rgba(77,125,255,.16),rgba(139,92,246,.08));border:1px solid rgba(77,125,255,.5)}
 .pface.back{background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.4);transform:rotateY(180deg)}
@@ -213,7 +219,6 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2.5px soli
 .pface.back .lbl{color:var(--gold)}
 .pface p{font-size:14.5px}
 .pface p b{color:var(--ink)}
-.fliphint{font-size:11px;color:var(--faint);text-align:right;margin:7px 2px 0;font-family:'Space Grotesk',monospace;letter-spacing:.08em}
 
 /* infographic kit */
 .lab{display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.22em;
@@ -227,7 +232,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2.5px soli
 .stat span{display:block;margin-top:6px;font-family:'Space Grotesk',monospace;font-size:10px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--dim);line-height:1.5}
 .personas{display:flex;flex-wrap:wrap;gap:8px}
-.persona{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--glass);
+.persona{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(125,145,255,.1);background:var(--glass);
   border-radius:999px;padding:8px 15px;font-size:13px;color:#d4dbf5}
 .duo{display:grid;gap:8px}
 .bub{max-width:88%;padding:11px 15px;border-radius:15px;font-size:13.5px;line-height:1.5}
@@ -258,6 +263,19 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2.5px soli
   .plink.vid:hover{border-color:var(--blue)}
 }
 
+/* ===== hands-on lab ===== */
+.ctrl{display:grid;margin:2px 0 4px}
+.ctrlrow{display:grid;grid-template-columns:118px 1fr;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px;color:#c0c9ea}
+.ctrlrow:last-child{border-bottom:none}
+.ctrlrow b{font-family:'Space Grotesk',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);font-weight:600;padding-top:2px}
+.cklist{display:grid;gap:2px;margin-top:4px}
+.ck{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:#c0c9ea;cursor:pointer;padding:6px 0}
+.ck input{accent-color:var(--cyan);width:16px;height:16px;margin-top:2px;flex:none;cursor:pointer}
+.ck:hover span{color:var(--ink)}
+.rescue{border:1px solid rgba(255,209,102,.4);background:rgba(255,209,102,.06);border-radius:16px;padding:20px 24px;margin-top:14px}
+.rescue h3{color:var(--gold);font-size:16px;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.rescue li{font-size:13.5px;color:#e6d9b8;margin:0 0 8px 18px}
+
 /* ===== module 3 · compare ===== */
 .cmpwrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%;min-width:820px;font-size:13.5px}
@@ -276,6 +294,10 @@ tbody tr:hover{background:rgba(77,125,255,.06)}
   color:var(--ink);padding:16px 19px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
 .match-q .ic{color:var(--blue);transition:transform 200ms var(--ease)}
 .match.open .match-q .ic{transform:rotate(45deg)}
+.match-q::after{content:"TAP";margin-left:auto;flex:none;font-family:'Space Grotesk',monospace;font-size:9.5px;letter-spacing:.18em;
+  color:var(--cyan);border:1px solid rgba(56,225,255,.5);border-radius:999px;padding:3px 10px}
+.match.open .match-q::after{content:"CLOSE";color:var(--dim);border-color:var(--line2)}
+@media (hover:hover) and (pointer:fine){.match-q:hover{background:rgba(77,125,255,.06)}}
 /* grid-rows trick: interruptible height animation without JS measuring */
 .match-a-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows 240ms var(--ease)}
 .match.open .match-a-wrap{grid-template-rows:1fr}
@@ -289,9 +311,14 @@ tbody tr:hover{background:rgba(77,125,255,.06)}
 .rp .scene{font-size:15px;margin-bottom:18px}
 .rp .scene b{color:var(--gold)}
 .rp .opts{display:grid;gap:10px}
-.rp .opt{text-align:left;border:1px solid var(--line);background:var(--glass);color:var(--ink);border-radius:12px;
+.rp .opt{display:flex;align-items:flex-start;gap:11px;text-align:left;border:1px solid var(--line);background:var(--glass);color:var(--ink);border-radius:12px;
   padding:13px 17px;font-size:14px;cursor:pointer;font-family:inherit;
   transition:transform 150ms var(--ease),border-color 150ms ease,background-color 150ms ease}
+.rp .opt::before{content:"";flex:none;width:15px;height:15px;margin-top:2.5px;border:2px solid rgba(125,145,255,.55);border-radius:50%;
+  transition:border-color 150ms ease,background-color 150ms ease}
+.rp .opt.best::before{border-color:var(--ok);background:var(--ok)}
+.rp .opt.meh::before{border-color:var(--gold);background:var(--gold)}
+.rp .opt.bad::before{border-color:var(--danger);background:var(--danger)}
 .rp .opt:active{transform:scale(.985)}
 @media (hover:hover) and (pointer:fine){.rp .opt:hover{border-color:var(--blue)}}
 .rp .opt.best{border-color:var(--ok);background:rgba(52,211,153,.1)}
@@ -313,9 +340,13 @@ tbody tr:hover{background:rgba(77,125,255,.06)}
 .quiz-card .qn{font-family:'Space Grotesk',monospace;font-size:10.5px;letter-spacing:.24em;margin-bottom:7px;
   background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
 .quiz-card p.qtext{font-weight:700;font-size:15.5px;margin-bottom:13px}
-.qopt{display:block;width:100%;text-align:left;background:var(--glass);border:1px solid var(--line);color:var(--ink);
+.qopt{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;background:var(--glass);border:1px solid var(--line);color:var(--ink);
   border-radius:11px;padding:11px 15px;margin-bottom:8px;font-size:14px;cursor:pointer;font-family:inherit;
   transition:transform 140ms var(--ease),border-color 140ms ease,background-color 140ms ease}
+.qopt::before{content:"";flex:none;width:15px;height:15px;margin-top:2.5px;border:2px solid rgba(125,145,255,.55);border-radius:50%;
+  transition:border-color 140ms ease,background-color 140ms ease}
+.qopt.correct::before{border-color:var(--ok);background:var(--ok)}
+.qopt.wrong::before{border-color:var(--danger);background:var(--danger)}
 .qopt:active{transform:scale(.99)}
 @media (hover:hover) and (pointer:fine){.qopt:hover{border-color:var(--blue)}}
 .qopt.correct{background:rgba(52,211,153,.13);border-color:var(--ok);font-weight:700}
@@ -407,6 +438,7 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
   <span class="gap"></span>
   <a href="#flow">Flow</a>
   <a href="#products">Products</a>
+  <a href="#handson">Hands-On</a>
   <a href="#compare">Compare</a>
   <a href="#matcher">Matcher</a>
   <a href="#roleplay">Role-Play</a>
@@ -498,7 +530,6 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
           <div class="pface back"><span class="lbl">◀ Why it works</span><p>This is an <b>emotional purchase</b>, not a spec purchase. The buyer is the adult child (the "sandwich generation"); the user is the senior. Sell peace of mind to one, demo delight to the other. The local-company angle builds trust at a community event like this.</p></div>
         </div>
       </div>
-      <p class="fliphint">tap card to flip ⇄</p>
       <p class="lab"><svg class="ic"><use href="#i-target"/></svg>Who's it for</p>
       <div class="personas">
         <span class="persona">👵 Parents living alone</span>
@@ -558,7 +589,6 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
           <div class="pface back"><span class="lbl">◀ Why it works</span><p>The pitch stacks <b>three concrete numbers</b> (50 hrs, 5 m, 112 languages) and ends on the outcome, not the feature. The killer differentiator vs a phone: it <b>records phone calls</b> and never gets interrupted by one.</p></div>
         </div>
       </div>
-      <p class="fliphint">tap card to flip ⇄</p>
       <p class="lab"><svg class="ic"><use href="#i-target"/></svg>Who's it for</p>
       <div class="personas">
         <span class="persona">💼 Back-to-back meetings</span>
@@ -617,7 +647,6 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
           <div class="pface back"><span class="lbl">◀ Why it works</span><p><b>"All four in the box"</b> kills the accessory-upsell suspicion. "Highlight the moment as it happens" paints a vivid scene — site visits, consultations, lectures. Wearing one yourself is the strongest opener at the booth.</p></div>
         </div>
       </div>
-      <p class="fliphint">tap card to flip ⇄</p>
       <p class="lab"><svg class="ic"><use href="#i-target"/></svg>Who's it for</p>
       <div class="personas">
         <span class="persona">🏃 On-the-move pros</span>
@@ -677,7 +706,6 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
           <div class="pface back"><span class="lbl">◀ Why it works</span><p>"Guinness World Record" is an <b>instant credibility anchor</b> nobody else at the exhibition can claim. The case-records-independently detail is the surprise that makes people pick it up — and picking it up is half the sale.</p></div>
         </div>
       </div>
-      <p class="fliphint">tap card to flip ⇄</p>
       <p class="lab"><svg class="ic"><use href="#i-target"/></svg>Who's it for</p>
       <div class="personas">
         <span class="persona">🎧 Earbud upgraders</span>
@@ -736,7 +764,6 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
           <div class="pface back"><span class="lbl">◀ Why it works</span><p>"Tap a word, hear that moment" is the <b>one demo people remember</b> — it feels like magic and no phone can copy it. Frame it as the flagship: the thinnest, newest, most powerful AI of the iFLYTEK line.</p></div>
         </div>
       </div>
-      <p class="fliphint">tap card to flip ⇄</p>
       <p class="lab"><svg class="ic"><use href="#i-target"/></svg>Who's it for</p>
       <div class="personas">
         <span class="persona">🖊 Die-hard handwriters</span>
@@ -795,7 +822,6 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
           <div class="pface back"><span class="lbl">◀ Why it works</span><p>The <b>17 / 83 language numbers land hard at Tampines</b> — demo Mandarin or Malay transcription for multilingual families. "About a week of battery" is the anti-iPad line: this never needs nightly charging.</p></div>
         </div>
       </div>
-      <p class="fliphint">tap card to flip ⇄</p>
       <p class="lab"><svg class="ic"><use href="#i-target"/></svg>Who's it for</p>
       <div class="personas">
         <span class="persona">🎓 Students — the value pick</span>
@@ -824,9 +850,174 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
   <button class="mdone" data-m="products">Mark module complete ✓</button>
 </section>
 
-<!-- ================= 3. COMPARE ================= -->
+<!-- ================= 3. HANDS-ON LAB ================= -->
+<section id="handson">
+  <p class="kicker reveal">Module 03 · Device Playbook</p>
+  <h2 class="reveal">Hands-on lab</h2>
+  <p class="lede reveal">How each device actually operates — read it here, then prove it on the real units during physical training. Every fact below matches the verified spec sheet. Anything unit-specific is a <b>checkbox: tick it off when your trainer shows you on the actual device.</b> Tap a device to open its card.</p>
+
+  <div class="matcher stagger">
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>🎙 PLAUD Note Pro — controls &amp; demo path</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner">
+        <div class="ctrl">
+          <div class="ctrlrow"><b>Record</b><span>One press on the record button starts recording — one press stops it.</span></div>
+          <div class="ctrlrow"><b>Modes</b><span>Nothing to switch — it auto-detects whether it's a phone call or an in-person meeting.</span></div>
+          <div class="ctrlrow"><b>Highlight</b><span>Press to Highlight marks a key moment while recording.</span></div>
+          <div class="ctrlrow"><b>Status</b><span>The 0.95″ display shows recording state and battery at a glance — show it to the customer.</span></div>
+          <div class="ctrlrow"><b>Mount</b><span>Snaps magnetically onto the phone with the included black magnetic case.</span></div>
+        </div>
+        <p class="lab"><svg class="ic"><use href="#i-bolt"/></svg>The money demo, step by step</p>
+        <ol class="demosteps">
+          <li>Press once to record, speak your 15-second pitch</li>
+          <li>Stop, open the PLAUD app → show the transcript and AI summary appear</li>
+          <li>Snap it onto your phone — let them hear the click</li>
+        </ol>
+        <p class="lab"><svg class="ic"><use href="#i-check"/></svg>Confirm on the real unit</p>
+        <div class="cklist">
+          <label class="ck"><input type="checkbox"><span>Which account each demo unit's PLAUD app is logged into</span></label>
+          <label class="ck"><input type="checkbox"><span>The exact taps from app home to a new recording's transcript</span></label>
+          <label class="ck"><input type="checkbox"><span>Charging cable type and where spares live at the booth</span></label>
+        </div>
+      </div></div></div>
+    </div>
+
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>📍 PLAUD NotePin S — controls &amp; demo path</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner">
+        <div class="ctrl">
+          <div class="ctrlrow"><b>Record</b><span>Long-press the tactile button to start recording hands-free; long-press again to stop.</span></div>
+          <div class="ctrlrow"><b>Highlight</b><span>Short-press while recording to highlight that exact moment (NotePin S exclusive).</span></div>
+          <div class="ctrlrow"><b>Consent</b><span>A visible status light shows when it's recording — point it out before every demo.</span></div>
+          <div class="ctrlrow"><b>Wear</b><span>Four styles in the box: lanyard, wristband, clip, magnetic pin.</span></div>
+        </div>
+        <p class="lab"><svg class="ic"><use href="#i-bolt"/></svg>The money demo, step by step</p>
+        <ol class="demosteps">
+          <li>Wear it. Long-press to record while your hands stay full</li>
+          <li>Short-press mid-sentence: "that just highlighted this moment"</li>
+          <li>Open the PLAUD app → show the highlight flagged in the recording</li>
+        </ol>
+        <p class="lab"><svg class="ic"><use href="#i-check"/></svg>Confirm on the real unit</p>
+        <div class="cklist">
+          <label class="ck"><input type="checkbox"><span>Which booth phone each pin is paired to</span></label>
+          <label class="ck"><input type="checkbox"><span>Where highlights appear in the app's recording timeline</span></label>
+          <label class="ck"><input type="checkbox"><span>How to swap wearing accessories quickly mid-shift</span></label>
+        </div>
+      </div></div></div>
+    </div>
+
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>🎧 Liberty 5 Pro Max — controls &amp; demo path</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner">
+        <div class="ctrl">
+          <div class="ctrlrow"><b>Case screen</b><span>The 1.78″ touchscreen runs ANC settings, the recorder and widgets — no phone needed for those.</span></div>
+          <div class="ctrlrow"><b>Record</b><span>Start and stop recording from the case screen. The earbuds can stay in the case or your bag — the case records the room on its own.</span></div>
+          <div class="ctrlrow"><b>Buds</b><span>ANC 4.0; pairs with up to 3 devices at once (multipoint).</span></div>
+          <div class="ctrlrow"><b>Transcripts</b><span>Recordings transcribe and summarise in the soundcore app.</span></div>
+        </div>
+        <p class="lab"><svg class="ic"><use href="#i-bolt"/></svg>The money demo, step by step</p>
+        <ol class="demosteps">
+          <li>Hand them the case — let them swipe the screen themselves</li>
+          <li>Start a recording from the case, talk 15 seconds, show the transcript in the app</li>
+          <li>Buds in, ANC on, music up — the hall noise vanishing is the close</li>
+        </ol>
+        <p class="lab"><svg class="ic"><use href="#i-check"/></svg>Confirm on the real unit</p>
+        <div class="cklist">
+          <label class="ck"><input type="checkbox"><span>The exact swipe path on the case screen to reach the recorder</span></label>
+          <label class="ck"><input type="checkbox"><span>Where transcripts and summaries live inside the soundcore app</span></label>
+          <label class="ck"><input type="checkbox"><span>How the real-time translation mode is started</span></label>
+        </div>
+      </div></div></div>
+    </div>
+
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>📓 iFLYTEK AINOTE 2 — controls &amp; demo path</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner">
+        <div class="ctrl">
+          <div class="ctrlrow"><b>Write</b><span>Stylus on E-Ink — real paper feel, no glare. Let the customer write first.</span></div>
+          <div class="ctrlrow"><b>Record</b><span>It records the room while you handwrite; the ink is synced to the audio timeline.</span></div>
+          <div class="ctrlrow"><b>Replay</b><span>Tap a handwritten word → it plays the audio from the exact moment you wrote it.</span></div>
+          <div class="ctrlrow"><b>AI</b><span>Meeting summaries, AI search across notes, and on-device AI chat.</span></div>
+        </div>
+        <p class="lab"><svg class="ic"><use href="#i-bolt"/></svg>The money demo, step by step</p>
+        <ol class="demosteps">
+          <li>Customer writes a keyword while you record ~20 seconds</li>
+          <li>Stop, then tap that word on the page</li>
+          <li>The audio of that exact moment plays — pause and let it land</li>
+        </ol>
+        <p class="lab"><svg class="ic"><use href="#i-check"/></svg>Confirm on the real unit</p>
+        <div class="cklist">
+          <label class="ck"><input type="checkbox"><span>The on-screen control that starts a recording</span></label>
+          <label class="ck"><input type="checkbox"><span>The steps to generate the AI summary after recording</span></label>
+          <label class="ck"><input type="checkbox"><span>Keep a clean demo notebook page ready each morning</span></label>
+        </div>
+      </div></div></div>
+    </div>
+
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>📔 iFLYTEK AINOTE Air 2 — controls &amp; demo path</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner">
+        <div class="ctrl">
+          <div class="ctrlrow"><b>Transcribe</b><span>Live voice-to-text in 17 languages, with translation.</span></div>
+          <div class="ctrlrow"><b>Convert</b><span>One tap converts handwriting to typed text — 83 languages.</span></div>
+          <div class="ctrlrow"><b>⚠ Order</b><span>Voice transcription and handwriting conversion can't run together — finish one, then start the other. Sequence your demo this way, every time.</span></div>
+          <div class="ctrlrow"><b>Extras</b><span>Tap notes to replay linked audio; handwritten symbols auto-become to-dos and schedule items.</span></div>
+        </div>
+        <p class="lab"><svg class="ic"><use href="#i-bolt"/></svg>The money demo, step by step</p>
+        <ol class="demosteps">
+          <li>Live-transcribe in the customer's own language — Mandarin and Malay land hard at Tampines</li>
+          <li>Stop transcription, then scribble messy handwriting</li>
+          <li>One tap → clean typed text. Always gets a reaction</li>
+        </ol>
+        <p class="lab"><svg class="ic"><use href="#i-check"/></svg>Confirm on the real unit</p>
+        <div class="cklist">
+          <label class="ck"><input type="checkbox"><span>The menu that switches transcription language</span></label>
+          <label class="ck"><input type="checkbox"><span>Where the handwriting-convert button sits</span></label>
+          <label class="ck"><input type="checkbox"><span>Test your two demo languages before doors open</span></label>
+        </div>
+      </div></div></div>
+    </div>
+
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>🤖 Steed Companion — controls &amp; demo path</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner">
+        <div class="ctrl">
+          <div class="ctrlrow"><b>Talk</b><span>No app, no menus, no typing — the senior just speaks to it naturally.</span></div>
+          <div class="ctrlrow"><b>Engage</b><span>It holds a two-way exchange: weather, a song, a simple chat. It initiates, too — that's the point for someone living alone.</span></div>
+          <div class="ctrlrow"><b>Ecosystem</b><span>Part of Steed's wider eldercare line (emergency call, contact-free home monitoring) — talk track only; the booth unit may not demonstrate these.</span></div>
+        </div>
+        <p class="lab"><svg class="ic"><use href="#i-bolt"/></svg>The money demo, step by step</p>
+        <ol class="demosteps">
+          <li>Invite the senior to say hello to it</li>
+          <li>Let one full two-way exchange play out — don't talk over it</li>
+          <li>Turn to the family: "companionship for her, peace of mind for you"</li>
+        </ol>
+        <p class="lab"><svg class="ic"><use href="#i-check"/></svg>Confirm on the real unit</p>
+        <div class="cklist">
+          <label class="ck"><input type="checkbox"><span>How to wake it / start a conversation on the booth unit</span></label>
+          <label class="ck"><input type="checkbox"><span>Volume adjustment for a noisy hall</span></label>
+          <label class="ck"><input type="checkbox"><span>Which languages the booth unit speaks</span></label>
+          <label class="ck"><input type="checkbox"><span>Power on/off and restart routine</span></label>
+        </div>
+      </div></div></div>
+    </div>
+  </div>
+
+  <div class="rescue reveal">
+    <h3><svg class="ic"><use href="#i-alert"/></svg>Demo rescue — when something glitches mid-pitch</h3>
+    <ul>
+      <li><b>The 30-second rule:</b> never troubleshoot in front of a customer for more than 30 seconds. Switch to the backup unit, or play the product video — every product card above links one.</li>
+      <li>Keep one "golden unit" per product charged, logged in and untouched; rotate it in when a demo unit misbehaves.</li>
+      <li>Wi-Fi drops → hotspot from the opening checklist. QR won't scan → search the product together on ishopchangi.com.</li>
+      <li>Log every glitch and report nightly to the supervisor — tomorrow's setup fixes today's surprises.</li>
+    </ul>
+  </div>
+  <button class="mdone" data-m="handson">Mark module complete ✓</button>
+</section>
+
+<!-- ================= 4. COMPARE ================= -->
 <section id="compare">
-  <p class="kicker reveal">Module 03 · Side by Side</p>
+  <p class="kicker reveal">Module 04 · Side by Side</p>
   <h2 class="reveal">Cheat-sheet comparison</h2>
   <p class="lede reveal">When customers ask "what's the difference?", answer from this table — never guess.</p>
   <div class="card cmpwrap reveal" style="padding:8px 18px 18px">
@@ -848,7 +1039,7 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
 
 <!-- ================= 4. MATCHER ================= -->
 <section id="matcher">
-  <p class="kicker reveal">Module 04 · Hear This → Recommend That</p>
+  <p class="kicker reveal">Module 05 · Hear This → Recommend That</p>
   <h2 class="reveal">Customer matcher</h2>
   <p class="lede reveal">Tap each line a visitor might say to reveal the right recommendation.</p>
   <div class="matcher stagger">
@@ -886,7 +1077,7 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
 
 <!-- ================= 5. ROLEPLAY ================= -->
 <section id="roleplay">
-  <p class="kicker reveal">Module 05 · Booth Simulator</p>
+  <p class="kicker reveal">Module 06 · Booth Simulator</p>
   <h2 class="reveal">Role-play: choose your reply</h2>
   <p class="lede reveal">Three real booth situations. Pick the response you'd give — get instant coaching.</p>
   <div class="rp card reveal" id="rpbox"></div>
@@ -895,7 +1086,7 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
 
 <!-- ================= 6. QUIZ ================= -->
 <section id="quiz">
-  <p class="kicker reveal">Module 06 · Certification Check</p>
+  <p class="kicker reveal">Module 07 · Certification Check</p>
   <h2 class="reveal">Are you booth-ready?</h2>
   <p class="lede reveal">10 questions. Score 9+ to certify yourself ready for Day 1.</p>
   <div id="quizwrap"></div>
@@ -905,7 +1096,7 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
 
 <!-- ================= 7. CONDUCT + LOGISTICS ================= -->
 <section id="conduct">
-  <p class="kicker reveal">Module 07 · Booth Conduct &amp; Run-of-Show</p>
+  <p class="kicker reveal">Module 08 · Booth Conduct &amp; Run-of-Show</p>
   <h2 class="reveal">Do's, Don'ts &amp; logistics</h2>
   <div class="dd stagger">
     <div class="ddcol card do">
@@ -966,7 +1157,7 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
       const m=Math.floor(ms/60000);    ms-=m*60000;
       const s=Math.floor(ms/1000);
       D.textContent=pad(d);H.textContent=pad(h);M.textContent=pad(m);S.textContent=pad(s);
-      label.textContent='UNTIL BOOTH OPENS — FINISH ALL 7 MODULES BEFORE THEN';
+      label.textContent='UNTIL BOOTH OPENS — FINISH ALL 8 MODULES BEFORE THEN';
     }else if(now<=end){
       box.style.display='none';
       label.textContent='● EVENT IS LIVE — GOOD LUCK OUT THERE. EVERY SCAN COUNTS.';
@@ -990,7 +1181,7 @@ footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-s
 })();
 
 /* ===== module progress (in-memory by design) ===== */
-const MODULES=['flow','products','compare','matcher','roleplay','quiz','conduct'];
+const MODULES=['flow','products','handson','compare','matcher','roleplay','quiz','conduct'];
 const doneSet=new Set();
 function refreshPill(){document.getElementById('progressPill').textContent=`${doneSet.size} / ${MODULES.length} modules`;}
 document.querySelectorAll('.mdone').forEach(b=>b.addEventListener('click',()=>{
@@ -1093,7 +1284,7 @@ function buildQuiz(){
           const v=document.getElementById('verdict');
           v.textContent= score>=9 ? '🏆 CERTIFIED BOOTH-READY. See you on the 19th.' :
                           score>=7 ? 'Almost there — re-read the product trainer and retake.' :
-                          'Restudy Modules 2–4, then retake before your shift.';
+                          'Restudy Modules 2–5, then retake before your shift.';
           document.getElementById('retryQuiz').classList.add('show');
         }
       });
