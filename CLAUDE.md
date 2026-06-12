@@ -43,13 +43,14 @@ All prices are RRP references; site instructs promoters to quote the live iShopC
 ## Design system (inspired by PLAUD-AI-Poster-updated.jpg, redesigned 2026-06-13)
 - Palette: near-black bg #04040c/#0a0c1e, electric blue #4d7dff, violet #8b5cf6, cyan #38e1ff, accent gradient cyan→blue→violet, text #f2f5ff, dim #8e96bb, gold #ffd166 (GST/price only), danger #ff6b6b, ok #34d399
 - Fonts: Space Grotesk (display + mono/labels), Inter (body). Letterspaced uppercase overlines, gradient-clipped display text
-- Look: poster-style dark panels, faint grid backdrop, glow-floor SVG product renders (gradient-shaded, one per product), icon sprite (`<symbol>`/`<use>`), spec badge chips, scrolling marquee, live D/H/M/S countdown
+- Look: poster-style dark panels, faint grid backdrop, real lifestyle product photos in img/ (one per product, 4:3 cover panels; steed.jpg was cropped with sips to remove baked-in marketing text), icon sprite (`<symbol>`/`<use>`), scrolling marquee, live D/H/M/S countdown
+- Product sections are infographic-style, not text-heavy (redesigned 2026-06-13): big-number stat tiles (.statgrid/.stat), small fact chips, emoji persona chips (.personas), chat-style objection bubbles (.duo/.bub they|you), numbered 60-second demo steps (.demosteps), gold honesty badges (.honesty) for the Liberty in-person-only and AINOTE simultaneity disclosures. Keep new copy in this compressed format — no bullet walls
 - Motion (Emil Kowalski design-engineering rules — preserve): custom curves `--ease: cubic-bezier(.23,1,.32,1)` / `--ease-io: cubic-bezier(.77,0,.175,1)`; UI transitions ≤300ms; `scale(.97)` on :active for all pressables; no `transition: all`; hover effects gated behind `@media (hover:hover) and (pointer:fine)`; staggered scroll reveals (50ms steps, IntersectionObserver, once); accordion via `grid-template-rows: 0fr→1fr`
 - Accessibility: focus-visible gold outlines, prefers-reduced-motion (keeps fades, drops movement/marquee/flip) — preserve these
 
 ## Site structure (7 modules, in-page anchors)
 1. #flow — 5-step sales flow + GST-savings close banner
-2. #products — quick-jump index grid + 6 full poster-style product sections (all visible, no tabs): glow-panel SVG render, price bar, spec chips, flip card (pitch front / "why it works" back), talking points, fit, demo tips, objections, buy+video links
+2. #products — quick-jump index grid + 6 full poster-style product sections (all visible, no tabs): lifestyle photo panel, price bar, stat tiles + fact chips, flip card (pitch front / "why it works" back), persona chips, they-say/you-say bubbles, 60-second demo steps, honesty badge where needed, buy+video links
 3. #compare — spec cheat-sheet table
 4. #matcher — accordion "customer says → recommend"
 5. #roleplay — 3-scenario simulator with graded options (best/meh/bad) + coaching
@@ -58,14 +59,14 @@ All prices are RRP references; site instructs promoters to quote the live iShopC
 Plus: sticky nav with module progress pill (in-memory only), event countdown to 2026-06-19T12:00+08:00.
 
 ## Constraints
-- Keep it a single self-contained HTML file unless asked otherwise
+- Keep it a single self-contained HTML file unless asked otherwise (exception: product photos live in img/, referenced relatively)
 - No localStorage/sessionStorage if it will ever be loaded in claude.ai artifacts; current progress tracking is in-memory by design
 - Never invent prices, discounts, or specs; unverified = "scan QR for price"
 - Local preview: `.claude/launch.json` runs `npx http-server -p 8765` (server takes a few seconds on first npx fetch)
 - Maintain honest-disclosure copy (Liberty case limitation, AINOTE simultaneity limit)
 
 ## Backlog / next steps
-- [ ] Replace SVG placeholder visuals with real product photos (need image files or CDN URLs from the team — cannot scrape iShopChangi)
+- [x] Real product photos added (2026-06-13) in img/ — replaced the SVG renders
 - [ ] Confirm SGD prices for Steed robot and AINOTE 2; update price boxes
 - [ ] Embed the actual booth QR code image in the hero/close sections (need asset)
 - [x] Deployed to GitHub Pages (2026-06-13): https://alfredocheese-bot.github.io/tampines-ai-training/ — repo github.com/AlfredoCheese-bot/tampines-ai-training (account AlfredoCheese-bot, gh CLI authed). To update: commit + `git push` (Pages rebuilds in ~1 min). Root index.html is a meta-refresh redirect to the training HTML. Poster jpg + .claude/ are gitignored.
