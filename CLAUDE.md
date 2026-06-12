@@ -68,6 +68,6 @@ Plus: sticky nav with module progress pill (in-memory only), event countdown to 
 - [ ] Replace SVG placeholder visuals with real product photos (need image files or CDN URLs from the team — cannot scrape iShopChangi)
 - [ ] Confirm SGD prices for Steed robot and AINOTE 2; update price boxes
 - [ ] Embed the actual booth QR code image in the hero/close sections (need asset)
-- [ ] Optional: deploy (GitHub Pages / Netlify) so promoters can open on phones
+- [x] Deployed to GitHub Pages (2026-06-13): https://alfredocheese-bot.github.io/tampines-ai-training/ — repo github.com/AlfredoCheese-bot/tampines-ai-training (account AlfredoCheese-bot, gh CLI authed). To update: commit + `git push` (Pages rebuilds in ~1 min). Root index.html is a meta-refresh redirect to the training HTML. Poster jpg + .claude/ are gitignored.
 - [ ] Optional: print-friendly one-page cheat sheet (@media print stylesheet)
 - [ ] Optional: track quiz completion per promoter (would need a backend or form)
