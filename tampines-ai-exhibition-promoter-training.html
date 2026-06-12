@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promoter Academy · Tampines AI Exhibition · 19–21 Jun 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg0:#04040c;
+  --bg1:#0a0c1e;
+  --ink:#f2f5ff;
+  --dim:#8e96bb;
+  --faint:#5a6184;
+  --blue:#4d7dff;
+  --violet:#8b5cf6;
+  --cyan:#38e1ff;
+  --gold:#ffd166;
+  --ok:#34d399;
+  --danger:#ff6b6b;
+  --line:rgba(125,145,255,.15);
+  --line2:rgba(125,145,255,.28);
+  --glass:rgba(140,160,255,.05);
+  --panel:rgba(13,16,36,.72);
+  --grad:linear-gradient(90deg,#38e1ff,#4d7dff 50%,#8b5cf6);
+  /* Emil: strong custom curves — built-in easings are too weak */
+  --ease:cubic-bezier(.23,1,.32,1);          /* strong ease-out: UI enters, releases */
+  --ease-io:cubic-bezier(.77,0,.175,1);      /* strong in-out: on-screen movement */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--ink);line-height:1.65;font-size:16px;
+  background:
+    radial-gradient(1000px 540px at 80% -10%, rgba(77,125,255,.16), transparent 60%),
+    radial-gradient(800px 600px at -15% 18%, rgba(139,92,246,.13), transparent 55%),
+    radial-gradient(900px 500px at 50% 105%, rgba(56,225,255,.07), transparent 60%),
+    linear-gradient(180deg,#070818 0%, var(--bg0) 50%, #05050f 100%);
+  background-attachment:fixed;
+}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.1;letter-spacing:-.01em}
+.mono{font-family:'Space Grotesk',monospace}
+a{color:var(--cyan)}
+::selection{background:rgba(77,125,255,.4)}
+
+/* faint grid backdrop */
+.grid-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background:
+    linear-gradient(rgba(125,145,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125,145,255,.04) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(900px 600px at 50% 12%, #000 0%, transparent 75%);
+  -webkit-mask-image:radial-gradient(900px 600px at 50% 12%, #000 0%, transparent 75%);
+}
+
+.ic{width:15px;height:15px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== topbar ===== */
+.topbar{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(5,6,16,.78);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:18px;padding:11px 22px;
+  font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.08em;overflow-x:auto;white-space:nowrap}
+.topbar::-webkit-scrollbar{display:none}
+.brand{display:flex;align-items:center;gap:10px;flex:none;font-weight:700;letter-spacing:.28em;font-size:12.5px}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.topbar a{color:var(--dim);text-decoration:none;flex:none;transition:color 150ms ease}
+.topbar a:hover{color:var(--ink)}
+.topbar .gap{flex:1}
+#progressPill{flex:none;background:var(--glass);border:1px solid var(--line2);border-radius:999px;padding:4px 13px;color:var(--cyan)}
+
+/* ===== hero ===== */
+.hero{max-width:1140px;margin:0 auto;padding:78px 22px 30px;text-align:center;position:relative}
+.hero .org{font-family:'Space Grotesk',monospace;font-size:11.5px;letter-spacing:.34em;color:var(--dim);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(40px,7.4vw,86px);font-weight:700;text-transform:uppercase;letter-spacing:.01em;
+  background:linear-gradient(180deg,#fff 25%,#a8c2ff 75%,#7d9bff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 28px rgba(77,125,255,.35))}
+.hero h1 .thin{display:block;font-size:.32em;font-weight:600;letter-spacing:.5em;margin-top:14px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:none}
+.hero .sub{color:var(--dim);max-width:64ch;margin:24px auto 0;font-size:16px}
+.hero .sub b{color:var(--ink)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);background:var(--glass);
+  border-radius:12px;padding:11px 16px;font-family:'Space Grotesk',monospace;font-size:12.5px;color:var(--dim)}
+.badge b{color:var(--ink);font-weight:600}
+.badge .ic{color:var(--blue)}
+.badge.gold{border-color:rgba(255,209,102,.45)}
+.badge.gold b,.badge.gold .ic{color:var(--gold)}
+
+/* countdown */
+.cd{display:flex;gap:12px;justify-content:center;margin-top:34px}
+.cdbox{min-width:78px;padding:14px 10px 11px;border:1px solid var(--line2);border-radius:14px;
+  background:linear-gradient(180deg,rgba(140,160,255,.07),rgba(140,160,255,.02))}
+.cdbox b{display:block;font-family:'Space Grotesk',monospace;font-size:30px;font-weight:700;line-height:1;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.cdbox span{display:block;margin-top:7px;font-family:'Space Grotesk',monospace;font-size:10px;letter-spacing:.24em;color:var(--faint);text-transform:uppercase}
+#cdLabel{margin-top:14px;font-family:'Space Grotesk',monospace;font-size:12.5px;letter-spacing:.1em;color:var(--dim)}
+#cdLabel.live{color:var(--ok)}
+
+/* marquee — constant motion, linear is correct */
+.marquee{margin-top:54px;border-block:1px solid var(--line);overflow:hidden;padding:13px 0;
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee .track{display:flex;gap:0;width:max-content;animation:scroll 30s linear infinite}
+.marquee span{font-family:'Space Grotesk',monospace;font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--faint);padding:0 28px;white-space:nowrap}
+.marquee span i{font-style:normal;color:var(--blue)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ===== sections ===== */
+section{max-width:1140px;margin:0 auto;padding:72px 22px 8px}
+.kicker{font-family:'Space Grotesk',monospace;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;margin-bottom:10px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+section>h2{font-size:clamp(28px,3.8vw,44px);font-weight:700;margin-bottom:10px}
+.lede{color:var(--dim);max-width:68ch;margin-bottom:30px;font-size:15.5px}
+.lede b{color:var(--ink)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* scroll reveal — entrance, ease-out, decorative so slightly longer is ok */
+.reveal{opacity:0;transform:translateY(20px)}
+.reveal.in{opacity:1;transform:none;transition:opacity 550ms var(--ease),transform 550ms var(--ease)}
+.stagger>*{opacity:0;transform:translateY(14px)}
+.stagger.in>*{opacity:1;transform:none;transition:opacity 480ms var(--ease),transform 480ms var(--ease)}
+.stagger.in>:nth-child(1){transition-delay:0ms}
+.stagger.in>:nth-child(2){transition-delay:50ms}
+.stagger.in>:nth-child(3){transition-delay:100ms}
+.stagger.in>:nth-child(4){transition-delay:150ms}
+.stagger.in>:nth-child(5){transition-delay:200ms}
+.stagger.in>:nth-child(6){transition-delay:250ms}
+
+/* buttons — press feedback, Emil: scale(.97) on :active */
+button{font-family:inherit}
+.mdone{margin:26px 0 0;background:transparent;border:1.5px solid var(--line2);color:var(--dim);border-radius:999px;
+  padding:10px 20px;font-family:'Space Grotesk',monospace;font-size:13px;cursor:pointer;
+  transition:transform 160ms var(--ease),border-color 160ms ease,color 160ms ease}
+.mdone:active{transform:scale(.97)}
+.mdone.done{border-color:var(--ok);color:var(--ok)}
+@media (hover:hover) and (pointer:fine){.mdone:hover{border-color:var(--blue);color:var(--ink)}.mdone.done:hover{border-color:var(--ok);color:var(--ok)}}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
+
+/* ===== module 1 · flow ===== */
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.step{padding:22px 19px;position:relative;overflow:hidden}
+.step::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--grad);opacity:.6}
+.step .n{font-family:'Space Grotesk',monospace;font-weight:700;font-size:40px;line-height:1;
+  color:transparent;-webkit-text-stroke:1.3px rgba(125,145,255,.7)}
+.step h3{font-size:17px;margin:12px 0 6px}
+.step p{font-size:13.5px;color:var(--dim)}
+.step .say{display:block;margin-top:11px;font-size:12.5px;color:var(--cyan);font-style:italic;border-left:2px solid var(--blue);padding-left:10px}
+.gst-banner{margin-top:18px;border:1px solid rgba(255,209,102,.4);border-radius:16px;padding:20px 24px;font-size:15px;
+  background:linear-gradient(90deg,rgba(255,209,102,.1),rgba(77,125,255,.07));position:relative;overflow:hidden}
+.gst-banner b{color:var(--gold)}
+.gst-banner i{color:var(--dim)}
+
+/* ===== module 2 · product showcase ===== */
+.pindex{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:48px}
+.pidx{display:flex;flex-direction:column;gap:4px;text-decoration:none;border:1px solid var(--line);background:var(--glass);
+  border-radius:14px;padding:14px 15px;transition:transform 180ms var(--ease),border-color 180ms ease}
+.pidx:active{transform:scale(.97)}
+.pidx .no{font-family:'Space Grotesk',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--faint)}
+.pidx .nm{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;color:var(--ink);line-height:1.25}
+.pidx .cat{font-size:11px;color:var(--dim)}
+@media (hover:hover) and (pointer:fine){.pidx:hover{border-color:var(--blue);transform:translateY(-2px)}}
+
+.prod{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:42px;align-items:start;
+  padding:46px 0 54px;border-top:1px solid var(--line);scroll-margin-top:80px}
+.prod:first-of-type{border-top:none;padding-top:8px}
+@media(max-width:880px){.prod{grid-template-columns:1fr;gap:26px}}
+.prod:nth-of-type(even) .pv{order:2}
+@media(max-width:880px){.prod:nth-of-type(even) .pv{order:0}}
+
+.pv{position:sticky;top:84px;border-radius:26px;border:1px solid var(--line2);overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%, rgba(77,125,255,.16), rgba(10,12,30,.6) 55%, rgba(5,5,14,.9));
+  display:flex;align-items:center;justify-content:center;padding:34px 22px;min-height:380px}
+@media(max-width:880px){.pv{position:static;min-height:300px}}
+.pv svg{width:min(320px,80%);height:auto;display:block}
+.pv .pvno{position:absolute;top:16px;left:20px;font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.3em;color:var(--faint)}
+.pv .pvbrand{position:absolute;top:16px;right:20px;font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
+
+.ptag{font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.26em;text-transform:uppercase;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.prod h3{font-size:clamp(24px,3vw,34px);margin:8px 0 6px;font-weight:700}
+.prod h3 small{font-size:13px;color:var(--dim);font-weight:500;font-family:'Inter',sans-serif}
+.oneliner{font-size:14.5px;color:var(--dim);max-width:58ch}
+
+.pricebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 20px}
+.price-rrp{font-family:'Space Grotesk',monospace;font-size:13px;color:var(--faint)}
+.price-rrp s{opacity:.85}
+.price-live{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--gold)}
+.gstchip{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-family:'Space Grotesk',monospace;letter-spacing:.1em;
+  background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.4);color:var(--gold);border-radius:999px;padding:5px 12px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:var(--glass);
+  border-radius:11px;padding:9px 13px;font-family:'Space Grotesk',monospace;font-size:12px;color:var(--ink)}
+.chip .ic{color:var(--blue)}
+
+/* pitch flip card */
+.pitchflip{perspective:1100px;margin-bottom:22px;cursor:pointer}
+.pitchinner{position:relative;transform-style:preserve-3d;min-height:148px;
+  transition:transform 480ms var(--ease-io)}
+.pitchflip.flipped .pitchinner{transform:rotateY(180deg)}
+.pface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:19px 22px;
+  display:flex;flex-direction:column;justify-content:center}
+.pface.front{background:linear-gradient(135deg,rgba(77,125,255,.16),rgba(139,92,246,.08));border:1px solid rgba(77,125,255,.5)}
+.pface.back{background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.4);transform:rotateY(180deg)}
+.pface .lbl{font-family:'Space Grotesk',monospace;font-size:10.5px;letter-spacing:.22em;margin-bottom:9px;text-transform:uppercase}
+.pface.front .lbl{color:var(--cyan)}
+.pface.back .lbl{color:var(--gold)}
+.pface p{font-size:14.5px}
+.pface p b{color:var(--ink)}
+.fliphint{font-size:11px;color:var(--faint);text-align:right;margin:7px 2px 0;font-family:'Space Grotesk',monospace;letter-spacing:.08em}
+
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:680px){.pgrid{grid-template-columns:1fr}}
+.pblock h4{display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:10px;border-bottom:1px solid var(--line);padding-bottom:7px}
+.pblock h4 .ic{color:var(--blue)}
+.pblock ul{list-style:none}
+.pblock li{font-size:13.5px;padding:4px 0 4px 20px;position:relative;color:#c0c9ea}
+.pblock li::before{content:"";position:absolute;left:1px;top:11px;width:9px;height:9px;border-radius:3px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));opacity:.85}
+.objection{font-size:13.5px;margin-bottom:11px;color:#c0c9ea}
+.objection b{display:block;color:var(--danger)}
+
+.plinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.plink{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;text-decoration:none;border-radius:11px;
+  padding:11px 17px;font-family:'Space Grotesk',monospace;
+  transition:transform 160ms var(--ease),box-shadow 200ms ease,background-color 160ms ease}
+.plink:active{transform:scale(.97)}
+.plink.buy{background:var(--grad);color:#05060f}
+.plink.vid{border:1px solid var(--line2);color:var(--ink);background:var(--glass)}
+@media (hover:hover) and (pointer:fine){
+  .plink.buy:hover{box-shadow:0 0 24px rgba(77,125,255,.45)}
+  .plink.vid:hover{border-color:var(--blue)}
+}
+
+/* ===== module 3 · compare ===== */
+.cmpwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:820px;font-size:13.5px}
+th,td{padding:12px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+td:first-child{color:var(--dim);font-weight:600;white-space:nowrap}
+tbody tr{transition:background-color 150ms ease}
+tbody tr:hover{background:rgba(77,125,255,.06)}
+
+/* ===== module 4 · matcher ===== */
+.matcher{display:grid;gap:10px}
+.match{border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden;
+  transition:border-color 180ms ease}
+.match.open{border-color:rgba(77,125,255,.55)}
+.match-q{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:none;
+  color:var(--ink);padding:16px 19px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+.match-q .ic{color:var(--blue);transition:transform 200ms var(--ease)}
+.match.open .match-q .ic{transform:rotate(45deg)}
+/* grid-rows trick: interruptible height animation without JS measuring */
+.match-a-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows 240ms var(--ease)}
+.match.open .match-a-wrap{grid-template-rows:1fr}
+.match-a{overflow:hidden;font-size:14px;color:#c8d1f0}
+.match-a-inner{padding:0 19px 17px;border-top:1px dashed var(--line)}
+.match-a-inner{padding-top:13px}
+.match-a b{color:var(--cyan)}
+
+/* ===== module 5 · roleplay ===== */
+.rp{padding:28px}
+.rp .scene{font-size:15px;margin-bottom:18px}
+.rp .scene b{color:var(--gold)}
+.rp .opts{display:grid;gap:10px}
+.rp .opt{text-align:left;border:1px solid var(--line);background:var(--glass);color:var(--ink);border-radius:12px;
+  padding:13px 17px;font-size:14px;cursor:pointer;font-family:inherit;
+  transition:transform 150ms var(--ease),border-color 150ms ease,background-color 150ms ease}
+.rp .opt:active{transform:scale(.985)}
+@media (hover:hover) and (pointer:fine){.rp .opt:hover{border-color:var(--blue)}}
+.rp .opt.best{border-color:var(--ok);background:rgba(52,211,153,.1)}
+.rp .opt.meh{border-color:var(--gold);background:rgba(255,209,102,.08)}
+.rp .opt.bad{border-color:var(--danger);background:rgba(255,107,107,.08)}
+.rp .verdict{margin-top:14px;font-size:14px;padding:14px 17px;border-radius:11px;background:rgba(77,125,255,.08);
+  border:1px solid var(--line2);opacity:0;transform:translateY(6px);visibility:hidden;
+  transition:opacity 220ms var(--ease),transform 220ms var(--ease),visibility 0s 220ms}
+.rp .verdict.show{opacity:1;transform:none;visibility:visible;transition:opacity 220ms var(--ease),transform 220ms var(--ease)}
+.rp .nextbtn{display:none;margin-top:14px;background:var(--grad);color:#05060f;border:none;border-radius:999px;
+  padding:11px 22px;font-weight:700;font-family:'Space Grotesk',monospace;cursor:pointer;
+  transition:transform 160ms var(--ease),box-shadow 200ms ease}
+.rp .nextbtn:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.rp .nextbtn:hover{box-shadow:0 0 20px rgba(77,125,255,.45)}}
+.rp .nextbtn.show{display:inline-block}
+
+/* ===== module 6 · quiz ===== */
+.quiz-card{padding:24px;margin-bottom:14px}
+.quiz-card .qn{font-family:'Space Grotesk',monospace;font-size:10.5px;letter-spacing:.24em;margin-bottom:7px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.quiz-card p.qtext{font-weight:700;font-size:15.5px;margin-bottom:13px}
+.qopt{display:block;width:100%;text-align:left;background:var(--glass);border:1px solid var(--line);color:var(--ink);
+  border-radius:11px;padding:11px 15px;margin-bottom:8px;font-size:14px;cursor:pointer;font-family:inherit;
+  transition:transform 140ms var(--ease),border-color 140ms ease,background-color 140ms ease}
+.qopt:active{transform:scale(.99)}
+@media (hover:hover) and (pointer:fine){.qopt:hover{border-color:var(--blue)}}
+.qopt.correct{background:rgba(52,211,153,.13);border-color:var(--ok);font-weight:700}
+.qopt.wrong{background:rgba(255,107,107,.1);border-color:var(--danger)}
+.qfb{font-size:13px;margin-top:6px;padding:11px 14px;border-radius:10px;opacity:0;transform:translateY(4px)}
+.qfb.show{opacity:1;transform:none;transition:opacity 200ms var(--ease),transform 200ms var(--ease)}
+.qfb.good{background:rgba(52,211,153,.1);color:#9ef0cd}
+.qfb.bad{background:rgba(255,107,107,.1);color:#ffb8b0}
+.score{padding:22px 26px;font-size:16px;font-weight:700;text-align:center}
+.score span#scorenum{font-family:'Space Grotesk',sans-serif;font-size:24px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+#verdict{display:block;font-size:13px;color:var(--dim);font-weight:500;margin-top:5px}
+#retryQuiz{display:none;margin:14px auto 0;background:transparent;border:1.5px solid var(--blue);color:var(--cyan);
+  border-radius:999px;padding:10px 24px;font-family:'Space Grotesk',monospace;font-weight:700;cursor:pointer;
+  transition:transform 160ms var(--ease),background-color 160ms ease}
+#retryQuiz:active{transform:scale(.97)}
+#retryQuiz.show{display:block}
+
+/* ===== module 7 · conduct ===== */
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:680px){.dd{grid-template-columns:1fr}}
+.ddcol{padding:24px}
+.ddcol.do{border-color:rgba(52,211,153,.4)}
+.ddcol.dont{border-color:rgba(255,107,107,.4)}
+.ddcol h3{display:flex;align-items:center;gap:9px;font-size:18px;margin-bottom:13px}
+.ddcol.do h3{color:var(--ok)}
+.ddcol.dont h3{color:var(--danger)}
+.ddcol li{font-size:14px;margin:0 0 9px 18px;color:#c0c9ea}
+.loggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.logcard{padding:20px}
+.logcard h3{display:flex;align-items:center;gap:8px;font-size:14.5px;margin-bottom:9px;color:var(--cyan)}
+.logcard h3 .ic{color:var(--blue)}
+.logcard p,.logcard li{font-size:13.5px;color:#c0c9ea}
+.logcard ul{margin-left:18px}
+.logcard b{color:var(--gold)}
+
+footer{margin-top:80px;border-top:1px solid var(--line);background:rgba(5,6,16,.7);text-align:center;padding:34px 20px;font-size:13px;color:var(--dim)}
+footer b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-size:12px;color:var(--ink);margin-bottom:10px}
+
+/* Emil: reduced motion = fewer & gentler, keep comprehension fades, drop movement */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal,.stagger>*{transform:none}
+  .reveal.in,.stagger.in>*{transition:opacity 250ms ease}
+  .pitchinner{transition:none}
+  .brand .dot{animation:none}
+  .marquee .track{animation:none}
+  .rp .verdict,.qfb{transform:none}
+  .match-a-wrap{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 5 13.5h6L10 22l9-11.5h-6L13 2z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></symbol>
+    <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2.5" y="8" width="16" height="8" rx="2"/><path d="M21.5 10.5v3"/><path d="M6 11v2M9.5 11v2M13 11v2"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M14.5 4.5 19.5 9.5 8 21H3v-5L14.5 4.5z"/><path d="M12.5 6.5l5 5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.8-3.4 7.9-8 9-4.6-1.1-8-4.2-8-9V6l8-3z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.8 6.3.7-4.7 4.3 1.3 6.2L12 16.9 6.4 20l1.3-6.2L3 9.5l6.3-.7L12 3z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.3-9.3C1.4 7.4 3.6 4.5 6.8 4.5c2 0 3.7 1.1 5.2 3 1.5-1.9 3.2-3 5.2-3 3.2 0 5.4 2.9 4.1 6.2C19.5 15.4 12 20 12 20z"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v2M17 21h4M21 18h-2"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2.5l2.3 11.5h10.7L21 7H7"/><circle cx="9.5" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5v-7z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c.5-3.6 3-5.7 6.2-5.7s5.7 2.1 6.2 5.7"/><path d="M15.5 4.9a3.4 3.4 0 0 1 0 6.2M17.8 14.6c2.3.7 3.6 2.5 4 5.4"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5l2.3 6.9L21 11.7l-6.7 2.3L12 21.5l-2.3-7.5L3 11.7l6.7-2.3L12 2.5z"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 1.8 20.5h20.4L12 3z"/><path d="M12 10v5M12 17.8v.4"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 2.5V6M15 2.5V6M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 3a6.5 6.5 0 0 0-4 11.6c.9.7 1.5 1.4 1.5 2.4h5c0-1 .6-1.7 1.5-2.4A6.5 6.5 0 0 0 12 3z"/><path d="M10 20.5h4"/></symbol>
+    <symbol id="i-feather" viewBox="0 0 24 24"><path d="M20.5 3.5C16 3 9.5 5.5 7 11l-3.5 9.5L13 17c5.5-2.5 8-9 7.5-13.5z"/><path d="M7 11l6 6"/></symbol>
+  </defs>
+</svg>
+
+<nav class="topbar" aria-label="Quick navigation">
+  <span class="brand"><span class="dot" aria-hidden="true"></span>METAPOD</span>
+  <span style="color:var(--faint)">TAMPINES AI EXHIBITION · 19–21 JUN · 12PM–8PM</span>
+  <span class="gap"></span>
+  <a href="#flow">Flow</a>
+  <a href="#products">Products</a>
+  <a href="#compare">Compare</a>
+  <a href="#matcher">Matcher</a>
+  <a href="#roleplay">Role-Play</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#conduct">Logistics</a>
+  <span id="progressPill">0 / 7 modules</span>
+</nav>
+
+<header class="hero">
+  <p class="org">People's Association · Our Tampines Hub · In partnership with NCS</p>
+  <h1>Promoter<br>Academy<span class="thin">Tampines AI Exhibition 2026</span></h1>
+  <p class="sub">Training for the <b>Metapod booth</b> team during the <b>Interactive Experience, 19–21 June 2026</b>. Master six AI products, perfect the pitch, and convert every interested visitor through the <b>QR → iShopChangi</b> checkout — with GST savings as your closing weapon.</p>
+  <div class="badges">
+    <span class="badge"><svg class="ic"><use href="#i-clock"/></svg><span><b>19–21 June</b> · 12pm–8pm daily</span></span>
+    <span class="badge"><svg class="ic"><use href="#i-pin"/></svg><span><b>Our Tampines Hub</b> · Metapod booth</span></span>
+    <span class="badge"><svg class="ic"><use href="#i-spark"/></svg><span><b>Interactive Experience</b> zone</span></span>
+    <span class="badge gold"><svg class="ic"><use href="#i-qr"/></svg><span><b>QR → iShopChangi</b> · GST savings</span></span>
+  </div>
+  <div class="cd" id="cd" aria-hidden="false">
+    <div class="cdbox"><b id="cdD">--</b><span>days</span></div>
+    <div class="cdbox"><b id="cdH">--</b><span>hours</span></div>
+    <div class="cdbox"><b id="cdM">--</b><span>mins</span></div>
+    <div class="cdbox"><b id="cdS">--</b><span>secs</span></div>
+  </div>
+  <p id="cdLabel" aria-live="polite"></p>
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Steed AI Companion <i>▪</i></span><span>PLAUD Note Pro <i>▪</i></span><span>PLAUD NotePin S <i>▪</i></span><span>Soundcore Liberty 5 Pro Max <i>▪</i></span><span>iFLYTEK AINOTE 2 <i>▪</i></span><span>iFLYTEK AINOTE Air 2 <i>▪</i></span><span>Scan · Shop · Save GST <i>▪</i></span>
+      <span>Steed AI Companion <i>▪</i></span><span>PLAUD Note Pro <i>▪</i></span><span>PLAUD NotePin S <i>▪</i></span><span>Soundcore Liberty 5 Pro Max <i>▪</i></span><span>iFLYTEK AINOTE 2 <i>▪</i></span><span>iFLYTEK AINOTE Air 2 <i>▪</i></span><span>Scan · Shop · Save GST <i>▪</i></span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 1. FLOW ================= -->
+<section id="flow">
+  <p class="kicker reveal">Module 01 · The Booth Routine</p>
+  <h2 class="reveal">The 5-step sales flow</h2>
+  <p class="lede reveal">Visitors at Tampines Hub are families, seniors and students browsing 30+ showcases. You have 2–5 minutes per person. Run this loop every time.</p>
+  <div class="flow stagger">
+    <div class="step card"><div class="n">01</div><h3>Greet</h3><p>Open with a hook, never "Can I help you?"</p><span class="say">"Want to see a gadget that writes your meeting notes for you?"</span></div>
+    <div class="step card"><div class="n">02</div><h3>Discover</h3><p>One question decides which product to show.</p><span class="say">"Is this for work, study, or someone at home?"</span></div>
+    <div class="step card"><div class="n">03</div><h3>Demo</h3><p>Show, don't tell. 10 seconds of speech → live transcript. Put the device in their hands.</p></div>
+    <div class="step card"><div class="n">04</div><h3>Pitch</h3><p>30 seconds: one benefit, one proof point, one price anchor.</p></div>
+    <div class="step card"><div class="n">05</div><h3>Close</h3><p>Point to the QR standee.</p><span class="say">"Scan here — it opens iShopChangi, and you save the GST. Checkout takes under a minute."</span></div>
+  </div>
+  <div class="gst-banner reveal">💰 <b>The GST-savings close:</b> buying via the QR on iShopChangi means <b>GST savings versus regular retail</b> — often the difference of a nice dinner. Use it on every fence-sitter: <i>"Same product, official channel, delivered to your home — minus the GST. The QR price is lower than any store you'll walk into."</i> If they hesitate: <i>"Scan it anyway — the page stays in your browser so you can decide tonight."</i></div>
+  <button class="mdone" data-m="flow">Mark module complete ✓</button>
+</section>
+
+<!-- ================= 2. PRODUCTS ================= -->
+<section id="products">
+  <p class="kicker reveal">Module 02 · Know Your Six</p>
+  <h2 class="reveal">The product line-up</h2>
+  <p class="lede reveal">All six, poster-style. <b>Tap each pitch card to flip it</b> — front is what you say, back is why it works. Watch every video before Day 1. Prices shown are Singapore RRP references; <b>always quote the live iShopChangi price from the QR</b>, which reflects GST savings.</p>
+
+  <div class="pindex stagger" aria-label="Jump to product">
+    <a class="pidx" href="#p1"><span class="no">01</span><span class="nm">Steed AI Companion</span><span class="cat">Companion robot</span></a>
+    <a class="pidx" href="#p2"><span class="no">02</span><span class="nm">PLAUD Note Pro</span><span class="cat">AI note taker</span></a>
+    <a class="pidx" href="#p3"><span class="no">03</span><span class="nm">PLAUD NotePin S</span><span class="cat">Wearable recorder</span></a>
+    <a class="pidx" href="#p4"><span class="no">04</span><span class="nm">Liberty 5 Pro Max</span><span class="cat">Earbuds + AI case</span></a>
+    <a class="pidx" href="#p5"><span class="no">05</span><span class="nm">iFLYTEK AINOTE 2</span><span class="cat">E-Ink flagship</span></a>
+    <a class="pidx" href="#p6"><span class="no">06</span><span class="nm">AINOTE Air 2</span><span class="cat">8.2″ E-Ink tablet</span></a>
+  </div>
+
+  <!-- ============ P1 STEED ============ -->
+  <article class="prod reveal" id="p1">
+    <div class="pv">
+      <span class="pvno">01 / 06</span><span class="pvbrand">Steed</span>
+      <svg viewBox="0 0 220 220" role="img" aria-label="Steed companion robot render">
+        <defs>
+          <linearGradient id="s1body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f8ff"/><stop offset="1" stop-color="#b9c4e0"/></linearGradient>
+          <radialGradient id="s1floor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#4d7dff" stop-opacity=".5"/><stop offset="1" stop-color="#4d7dff" stop-opacity="0"/></radialGradient>
+          <linearGradient id="s1face" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1230"/><stop offset="1" stop-color="#070a1c"/></linearGradient>
+        </defs>
+        <ellipse cx="110" cy="196" rx="74" ry="13" fill="url(#s1floor)"/>
+        <line x1="110" y1="22" x2="110" y2="34" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="110" cy="18" r="5" fill="#ffd166"/>
+        <rect x="66" y="112" width="88" height="76" rx="30" fill="url(#s1body)"/>
+        <rect x="48" y="126" width="16" height="38" rx="8" fill="url(#s1body)"/>
+        <rect x="156" y="126" width="16" height="38" rx="8" fill="url(#s1body)"/>
+        <circle cx="110" cy="80" r="46" fill="url(#s1body)"/>
+        <path d="M74 58 a46 46 0 0 1 36 -22" stroke="#ffffff" stroke-opacity=".7" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <rect x="80" y="60" width="60" height="42" rx="21" fill="url(#s1face)"/>
+        <circle cx="97" cy="78" r="5.5" fill="#38e1ff"/>
+        <circle cx="123" cy="78" r="5.5" fill="#38e1ff"/>
+        <path d="M99 90 q11 8 22 0" stroke="#38e1ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="110" cy="146" r="11" fill="none" stroke="#7d9bff" stroke-width="2.5"/>
+        <path d="M105 146 l4 4 7 -8" stroke="#38e1ff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <span class="ptag">Companion Robot · Eldercare &amp; Emotional AI</span>
+      <h3>Steed AI Emotional Companion Robot</h3>
+      <p class="oneliner">A Singapore-designed companion robot tackling loneliness — conversation, care and connection for seniors and the people who worry about them.</p>
+      <div class="pricebar">
+        <span class="price-live">Scan QR for price</span>
+        <span class="price-rrp">varies by configuration</span>
+        <span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST SAVINGS ON ISHOPCHANGI</span>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-pin"/></svg>SG Company · est. 2022</span>
+        <span class="chip"><svg class="ic"><use href="#i-mic"/></svg>Natural Voice AI</span>
+        <span class="chip"><svg class="ic"><use href="#i-heart"/></svg>Eldercare Ecosystem</span>
+      </div>
+      <div class="pitchflip" tabindex="0" role="button" aria-label="Flip pitch card">
+        <div class="pitchinner">
+          <div class="pface front"><span class="lbl">▶ 30-second pitch — what you say</span><p>"This is built by a Singapore company for exactly our situation — parents ageing at home while we're at work. It chats with them, keeps them emotionally engaged, and it's part of an eldercare ecosystem with emergency-call and home-safety tech. It's companionship for them, peace of mind for you."</p></div>
+          <div class="pface back"><span class="lbl">◀ Why it works</span><p>This is an <b>emotional purchase</b>, not a spec purchase. The buyer is the adult child (the "sandwich generation"); the user is the senior. Sell peace of mind to one, demo delight to the other. The local-company angle builds trust at a community event like this.</p></div>
+        </div>
+      </div>
+      <p class="fliphint">tap card to flip ⇄</p>
+      <div class="pgrid">
+        <div class="pblock"><h4><svg class="ic"><use href="#i-spark"/></svg>Key talking points</h4><ul>
+          <li>Made by Steed Innovation — Singapore-based, "IoT + AI + People's Care" mission</li>
+          <li>Natural voice conversation — no screens, menus or apps to learn</li>
+          <li>Emotional companionship designed to address loneliness in seniors</li>
+          <li>Part of a wider eldercare line: emergency call, contact-free home monitoring</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-target"/></svg>Best-fit customers</h4><ul>
+          <li>Adults shopping for elderly parents living alone</li>
+          <li>Multigenerational families at the booth — demo to grandma, close with the kids</li>
+          <li>Caregivers asking about safety and monitoring</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-bulb"/></svg>Demo tips</h4><ul>
+          <li>Let the senior speak to it directly — delight sells this product</li>
+          <li>Show a two-way exchange: weather, a song, a simple chat</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-shield"/></svg>Objection handling</h4>
+          <p class="objection"><b>"My mum won't use technology."</b>That's who it's built for — nothing to learn. No apps, no typing. She just talks to it like a person.</p>
+          <p class="objection"><b>"Isn't a tablet cheaper?"</b>A tablet waits to be used. This initiates — it engages her, which is the whole point for someone living alone.</p>
+        </div>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/steed-ai-emotional-companion-robot-mp00877705" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>iShopChangi listing</a>
+        <a class="plink vid" href="https://steedtech.sg/?product/120" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Steed product page</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ P2 NOTE PRO ============ -->
+  <article class="prod reveal" id="p2">
+    <div class="pv">
+      <span class="pvno">02 / 06</span><span class="pvbrand">PLAUD</span>
+      <svg viewBox="0 0 220 220" role="img" aria-label="PLAUD Note Pro render">
+        <defs>
+          <linearGradient id="np-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3c4366"/><stop offset=".5" stop-color="#1a1f3a"/><stop offset="1" stop-color="#10142a"/></linearGradient>
+          <radialGradient id="np-floor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#4d7dff" stop-opacity=".5"/><stop offset="1" stop-color="#4d7dff" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="110" cy="198" rx="76" ry="12" fill="url(#np-floor)"/>
+        <rect x="60" y="44" width="86" height="138" rx="14" fill="#11142a" transform="rotate(-7 103 113)" opacity=".75"/>
+        <rect x="78" y="36" width="86" height="142" rx="14" fill="url(#np-metal)" stroke="rgba(160,180,255,.25)" stroke-width="1.4"/>
+        <rect x="94" y="50" width="42" height="20" rx="5" fill="#05060f"/>
+        <rect x="98" y="56" width="16" height="3.5" rx="1.75" fill="#38e1ff"/>
+        <rect x="98" y="62" width="26" height="2.5" rx="1.25" fill="#3a4364"/>
+        <circle cx="92" cy="84" r="2" fill="#5a6594"/><circle cx="104" cy="84" r="2" fill="#5a6594"/><circle cx="116" cy="84" r="2" fill="#5a6594"/><circle cx="128" cy="84" r="2" fill="#5a6594"/>
+        <circle cx="121" cy="128" r="17" fill="none" stroke="#4d7dff" stroke-width="2.6"/>
+        <circle cx="121" cy="128" r="6" fill="#ff6b6b"/>
+        <rect x="100" y="158" width="42" height="4" rx="2" fill="#2c3354"/>
+        <path d="M84 42 v130" stroke="#ffffff" stroke-opacity=".14" stroke-width="2"/>
+      </svg>
+    </div>
+    <div>
+      <span class="ptag">AI Note Taker · PLAUD Flagship</span>
+      <h3>PLAUD Note Pro <small>(with black magnetic case)</small></h3>
+      <p class="oneliner">A credit-card-thin AI recorder that captures, transcribes and summarises meetings and phone calls.</p>
+      <div class="pricebar">
+        <span class="price-rrp">SG RRP <s>S$259</s></span>
+        <span class="price-live">Lower on iShopChangi</span>
+        <span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST SAVINGS — SCAN QR</span>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-feather"/></svg>2.99mm · 30g</span>
+        <span class="chip"><svg class="ic"><use href="#i-clock"/></svg>Up to 50hr Recording</span>
+        <span class="chip"><svg class="ic"><use href="#i-globe"/></svg>112 Languages</span>
+        <span class="chip"><svg class="ic"><use href="#i-chip"/></svg>64GB Storage</span>
+      </div>
+      <div class="pitchflip" tabindex="0" role="button" aria-label="Flip pitch card">
+        <div class="pitchinner">
+          <div class="pface front"><span class="lbl">▶ 30-second pitch — what you say</span><p>"Thinner than a credit card, snaps to the back of your phone. One press records up to 50 hours, five microphones pick up voices five metres away, and the app turns it all into transcripts, summaries and to-do lists in 112 languages. You walk out of every meeting with the notes already written."</p></div>
+          <div class="pface back"><span class="lbl">◀ Why it works</span><p>The pitch stacks <b>three concrete numbers</b> (50 hrs, 5 m, 112 languages) and ends on the outcome, not the feature. The killer differentiator vs a phone: it <b>records phone calls</b> and never gets interrupted by one.</p></div>
+        </div>
+      </div>
+      <p class="fliphint">tap card to flip ⇄</p>
+      <div class="pgrid">
+        <div class="pblock"><h4><svg class="ic"><use href="#i-spark"/></svg>Key talking points</h4><ul>
+          <li>2.99mm thin, 30g aluminium body — MagSafe-style snap to phone</li>
+          <li>4 MEMS mics + AI beamforming → clear pickup up to 5m / 16.4 ft</li>
+          <li>0.95″ AMOLED InstantView display (600 nits) — status at a glance</li>
+          <li>Smart dual-mode: auto-detects phone call vs in-person meeting</li>
+          <li>Up to 50 hrs continuous recording, 75 days standby, 64GB storage</li>
+          <li>Press to Highlight key moments; multimodal notes (text + images)</li>
+          <li>112-language transcription, 10,000+ summary templates, mind maps</li>
+          <li>Free Starter Plan: 300 transcription mins/month included</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-target"/></svg>Best-fit customers</h4><ul>
+          <li>Professionals in back-to-back meetings; sales, consulting, legal, healthcare</li>
+          <li>Anyone who records work calls</li>
+          <li>The "show me your best one" customer — this is the premium pick</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-bulb"/></svg>Demo tips</h4><ul>
+          <li>Record 15s of your own pitch → show the live transcript + AI summary</li>
+          <li>Snap it onto your phone; the satisfying click sells the form factor</li>
+          <li>Mention PLAUD already sells at Changi via Metapod — trusted channel</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-shield"/></svg>Objection handling</h4>
+          <p class="objection"><b>"My phone already records."</b>Your phone stops recording when a call comes in — and it can't record the call itself. This does both, for 50 hours, and writes the summary for you.</p>
+          <p class="objection"><b>"Subscription?"</b>300 free minutes monthly forever — that covers most users. Heavy users can upgrade, but there's no obligation.</p>
+        </div>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/plaud-note-pro-with-black-magnetic-case-mp00794707" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>iShopChangi listing</a>
+        <a class="plink vid" href="https://youtu.be/KeUKbw2DeRs" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Product video</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ P3 NOTEPIN S ============ -->
+  <article class="prod reveal" id="p3">
+    <div class="pv">
+      <span class="pvno">03 / 06</span><span class="pvbrand">PLAUD</span>
+      <svg viewBox="0 0 220 220" role="img" aria-label="PLAUD NotePin S render">
+        <defs>
+          <linearGradient id="pin-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f5fc"/><stop offset=".55" stop-color="#bfc8de"/><stop offset="1" stop-color="#8d97b4"/></linearGradient>
+          <radialGradient id="pin-floor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#8b5cf6" stop-opacity=".45"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="110" cy="198" rx="72" ry="12" fill="url(#pin-floor)"/>
+        <path d="M70 36 Q110 16 150 36" stroke="#4d7dff" stroke-width="2.5" fill="none" stroke-dasharray="5 6" stroke-linecap="round" opacity=".8"/>
+        <rect x="128" y="68" width="36" height="96" rx="18" fill="#69728e" transform="rotate(12 146 116)" opacity=".55"/>
+        <rect x="86" y="56" width="46" height="118" rx="23" fill="url(#pin-silver)" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
+        <circle cx="109" cy="90" r="4.5" fill="#38e1ff"/>
+        <rect x="100" y="126" width="18" height="5" rx="2.5" fill="#7d87a6"/>
+        <path d="M92 62 a23 23 0 0 1 14 -4" stroke="#ffffff" stroke-opacity=".85" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <text x="109" y="156" text-anchor="middle" font-family="'Space Grotesk',monospace" font-size="8" letter-spacing="2" fill="#5c668a">PLAUD</text>
+      </svg>
+    </div>
+    <div>
+      <span class="ptag">Wearable AI Note Taker</span>
+      <h3>PLAUD NotePin S</h3>
+      <p class="oneliner">The wearable one — an AA-battery-sized AI recorder worn as a pin, clip, necklace or wristband.</p>
+      <div class="pricebar">
+        <span class="price-rrp">SG RRP <s>S$249</s></span>
+        <span class="price-live">Lower on iShopChangi</span>
+        <span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST SAVINGS — SCAN QR</span>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-feather"/></svg>17g Ultra-Light</span>
+        <span class="chip"><svg class="ic"><use href="#i-clock"/></svg>20hr · 40-Day Standby</span>
+        <span class="chip"><svg class="ic"><use href="#i-plus"/></svg>4 Wear Styles Included</span>
+        <span class="chip"><svg class="ic"><use href="#i-chip"/></svg>64GB</span>
+      </div>
+      <div class="pitchflip" tabindex="0" role="button" aria-label="Flip pitch card">
+        <div class="pitchinner">
+          <div class="pface front"><span class="lbl">▶ 30-second pitch — what you say</span><p>"This one you wear — necklace, wristband, clip or pin, all four in the box. Long-press to record hands-free, short-press to highlight an important moment as it happens. Twenty hours of recording, and the same PLAUD app writes your transcripts and summaries in 112 languages."</p></div>
+          <div class="pface back"><span class="lbl">◀ Why it works</span><p><b>"All four in the box"</b> kills the accessory-upsell suspicion. "Highlight the moment as it happens" paints a vivid scene — site visits, consultations, lectures. Wearing one yourself is the strongest opener at the booth.</p></div>
+        </div>
+      </div>
+      <p class="fliphint">tap card to flip ⇄</p>
+      <div class="pgrid">
+        <div class="pblock"><h4><svg class="ic"><use href="#i-spark"/></svg>Key talking points</h4><ul>
+          <li>~17g, AA-battery-sized — discreet and all-day wearable</li>
+          <li>4 wearing styles included: lanyard, wristband, clip, magnetic pin</li>
+          <li>Tactile record button + Press to Highlight (NotePin S exclusive)</li>
+          <li>Up to 20 hrs continuous recording, ~40 days standby, 64GB</li>
+          <li>Same PLAUD Intelligence: 112 languages, speaker labels, mind maps</li>
+          <li>Enterprise privacy: ISO 27001/27701, SOC 2, HIPAA, GDPR compliant</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-target"/></svg>Best-fit customers</h4><ul>
+          <li>On-the-move pros: site visits, healthcare, real estate, networking</li>
+          <li>Students recording lectures hands-free</li>
+          <li>Liked the Note Pro but wants lighter / more discreet / wearable</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-bulb"/></svg>Demo tips</h4><ul>
+          <li>Wear it all shift — "I'm wearing one right now" opens conversations</li>
+          <li>Let them clip it on; the weight (or lack of it) is the wow</li>
+          <li>Demo Press-to-Highlight: mark a moment, show it flagged in the app</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-shield"/></svg>Objection handling</h4>
+          <p class="objection"><b>"Note Pro or NotePin S?"</b>Where do conversations happen? Desk and phone calls → Note Pro. Walking around, hands full → NotePin S. Same app, same AI — it's about your day, not better or worse.</p>
+          <p class="objection"><b>"Is recording people legal?"</b>Always let people know you're recording — same etiquette as taking a photo. The device has a visible status light.</p>
+        </div>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/plaud-notepin-s-mp00873091" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>iShopChangi listing</a>
+        <a class="plink vid" href="https://youtu.be/RBREYDEblsg" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Product video</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ P4 LIBERTY 5 PRO MAX ============ -->
+  <article class="prod reveal" id="p4">
+    <div class="pv">
+      <span class="pvno">04 / 06</span><span class="pvbrand">Soundcore</span>
+      <svg viewBox="0 0 220 220" role="img" aria-label="Soundcore Liberty 5 Pro Max render">
+        <defs>
+          <linearGradient id="lb-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#343b5e"/><stop offset="1" stop-color="#101430"/></linearGradient>
+          <linearGradient id="lb-bud" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9edf8"/><stop offset="1" stop-color="#9aa4c2"/></linearGradient>
+          <radialGradient id="lb-floor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#38e1ff" stop-opacity=".4"/><stop offset="1" stop-color="#38e1ff" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="110" cy="198" rx="80" ry="12" fill="url(#lb-floor)"/>
+        <rect x="38" y="66" width="132" height="92" rx="22" fill="url(#lb-metal)" stroke="rgba(160,180,255,.25)" stroke-width="1.4"/>
+        <rect x="52" y="80" width="84" height="64" rx="9" fill="#05070f"/>
+        <path d="M60 116 l6 -10 6 14 6 -20 6 16 6 -10 6 12 6 -16 6 14 6 -8" stroke="#38e1ff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="60" y="90" width="30" height="3.5" rx="1.75" fill="#3c466c"/>
+        <circle cx="128" cy="92" r="3" fill="#ff6b6b"/>
+        <rect x="146" y="96" width="14" height="32" rx="7" fill="none" stroke="#4d7dff" stroke-width="2"/>
+        <rect x="149" y="112" width="8" height="12" rx="4" fill="#4d7dff" opacity=".85"/>
+        <circle cx="170" cy="56" r="17" fill="url(#lb-bud)"/>
+        <rect x="165" y="68" width="10" height="24" rx="5" fill="url(#lb-bud)"/>
+        <circle cx="166" cy="51" r="4" fill="#ffffff" opacity=".8"/>
+        <circle cx="42" cy="48" r="15" fill="url(#lb-bud)" transform="rotate(-14 42 48)"/>
+        <rect x="38" y="58" width="9" height="22" rx="4.5" fill="url(#lb-bud)" transform="rotate(-14 42 69)"/>
+      </svg>
+    </div>
+    <div>
+      <span class="ptag">ANC Earbuds + AI Note Taker Smart Case</span>
+      <h3>Soundcore Liberty 5 Pro Max</h3>
+      <p class="oneliner">Flagship earbuds whose charging case has a 1.78″ AMOLED touchscreen and its own AI recorder — two gadgets in one.</p>
+      <div class="pricebar">
+        <span class="price-rrp">SG launch <s>S$299</s></span>
+        <span class="price-live">Lower on iShopChangi</span>
+        <span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST SAVINGS — SCAN QR</span>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-chip"/></svg>1.78″ AMOLED Case</span>
+        <span class="chip"><svg class="ic"><use href="#i-star"/></svg>Guinness Record Speech</span>
+        <span class="chip"><svg class="ic"><use href="#i-bolt"/></svg>ANC 4.0</span>
+        <span class="chip"><svg class="ic"><use href="#i-battery"/></svg>6.5 / 28hr</span>
+      </div>
+      <div class="pitchflip" tabindex="0" role="button" aria-label="Flip pitch card">
+        <div class="pitchinner">
+          <div class="pface front"><span class="lbl">▶ 30-second pitch — what you say</span><p>"These earbuds hold a Guinness World Record for call clarity. But the magic is the case — it has a touchscreen and its own microphone. Leave it on the table during a meeting and it records, transcribes and summarises everything, even with the earbuds in your bag. Earbuds plus an AI note-taker, one price."</p></div>
+          <div class="pface back"><span class="lbl">◀ Why it works</span><p>"Guinness World Record" is an <b>instant credibility anchor</b> nobody else at the exhibition can claim. The case-records-independently detail is the surprise that makes people pick it up — and picking it up is half the sale.</p></div>
+        </div>
+      </div>
+      <p class="fliphint">tap card to flip ⇄</p>
+      <div class="pgrid">
+        <div class="pblock"><h4><svg class="ic"><use href="#i-spark"/></svg>Key talking points</h4><ul>
+          <li>Case = AI note-taker: records in-room audio, transcribes, AI summaries with action items</li>
+          <li>1.78″ AMOLED touchscreen case — ANC, recorder, widgets, custom wallpapers</li>
+          <li>Anker Thus™ AI chip + 10 sensors → whisper-clear calls even in 100dB+ noise</li>
+          <li>Guinness World Record speech quality (Liberty 5 Pro buds — same units)</li>
+          <li>ANC 4.0: up to 2× noise-cancelling depth vs previous flagship</li>
+          <li>Real-time translation; AES-256 local encryption, business-grade privacy</li>
+          <li>6.5 hrs / 28 hrs with case; LDAC, Dolby Audio, IP55, 3-device multipoint</li>
+          <li>Free plan: 120 AI transcription mins/month for 24 months</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-target"/></svg>Best-fit customers</h4><ul>
+          <li>Anyone shopping for premium earbuds — then reveal the AI case</li>
+          <li>Commuters and travellers (ANC + live translation)</li>
+          <li>Frequent callers in noisy environments</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-bulb"/></svg>Demo tips</h4><ul>
+          <li>Hand them the case first — the screen is the hook</li>
+          <li>Start a recording from the case screen; show the transcript in the app</li>
+          <li>Play music with ANC on in the noisy exhibition hall — perfect demo venue</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-shield"/></svg>Objection handling</h4>
+          <p class="objection"><b>"I already have AirPods."</b>Do they take your meeting notes? This replaces earbuds AND a voice recorder — and holds a world record for call quality.</p>
+          <p class="objection"><b>Be honest:</b> the case records in-person audio only — not phone or online calls. If they need that, cross-sell PLAUD Note Pro. Honesty here wins the bigger sale.</p>
+        </div>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/soundcore-liberty-5-pro-max---earbuds-with-ai-note-taker-smart-case-mp00891812.html" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>iShopChangi listing</a>
+        <a class="plink vid" href="https://youtu.be/DfPw-D4WCDQ" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Product video</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ P5 AINOTE 2 ============ -->
+  <article class="prod reveal" id="p5">
+    <div class="pv">
+      <span class="pvno">05 / 06</span><span class="pvbrand">iFLYTEK</span>
+      <svg viewBox="0 0 220 220" role="img" aria-label="iFLYTEK AINOTE 2 render">
+        <defs>
+          <linearGradient id="a2-paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0f2f8"/><stop offset="1" stop-color="#dde2ee"/></linearGradient>
+          <linearGradient id="a2-pen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8ecf6"/><stop offset="1" stop-color="#9aa3c0"/></linearGradient>
+          <radialGradient id="a2-floor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#8b5cf6" stop-opacity=".45"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="110" cy="200" rx="76" ry="12" fill="url(#a2-floor)"/>
+        <rect x="58" y="24" width="104" height="160" rx="11" fill="#15182e" stroke="rgba(160,180,255,.25)" stroke-width="1.4"/>
+        <rect x="66" y="32" width="88" height="144" rx="5" fill="url(#a2-paper)"/>
+        <path d="M76 56 q8 -10 14 0 t14 0 t14 0 t14 0" stroke="#39415e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M76 72 q10 -8 18 -2 t20 0 t18 -2" stroke="#39415e" stroke-width="2" fill="none" stroke-linecap="round" opacity=".75"/>
+        <line x1="76" y1="96" x2="144" y2="96" stroke="#aab2c8" stroke-width="2.4"/>
+        <line x1="76" y1="108" x2="132" y2="108" stroke="#aab2c8" stroke-width="2.4"/>
+        <line x1="76" y1="120" x2="140" y2="120" stroke="#aab2c8" stroke-width="2.4"/>
+        <rect x="76" y="138" width="50" height="14" rx="7" fill="#4d7dff" opacity=".18"/>
+        <path d="M82 145 l3 -5 3 8 3 -10 3 9 3 -6 3 7 3 -8 3 5" stroke="#4d7dff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <g transform="rotate(34 158 150)">
+          <rect x="150" y="106" width="13" height="78" rx="6.5" fill="url(#a2-pen)"/>
+          <path d="M150 184 l6.5 14 6.5 -14 z" fill="#2c3354"/>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <span class="ptag">E-Ink AI Paper Tablet · iFLYTEK Flagship</span>
+      <h3>iFLYTEK AINOTE 2</h3>
+      <p class="oneliner">iFLYTEK's newest and thinnest E-Ink paper tablet — handwriting plus large-language-model AI transcription and summaries.</p>
+      <div class="pricebar">
+        <span class="price-live">Scan QR for price</span>
+        <span class="price-rrp">flagship tier</span>
+        <span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST SAVINGS ON ISHOPCHANGI</span>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-feather"/></svg>Thinnest Flagship</span>
+        <span class="chip"><svg class="ic"><use href="#i-spark"/></svg>LLM-Powered AI</span>
+        <span class="chip"><svg class="ic"><use href="#i-pen"/></svg>Paper-Feel E-Ink</span>
+      </div>
+      <div class="pitchflip" tabindex="0" role="button" aria-label="Flip pitch card">
+        <div class="pitchinner">
+          <div class="pface front"><span class="lbl">▶ 30-second pitch — what you say</span><p>"If you love writing by hand but hate typing it up after, this is yours. It feels like real paper, records the meeting while you write, and links your handwriting to the exact moment in the audio — tap a word, hear what was said right then. Then the AI summarises the whole thing."</p></div>
+          <div class="pface back"><span class="lbl">◀ Why it works</span><p>"Tap a word, hear that moment" is the <b>one demo people remember</b> — it feels like magic and no phone can copy it. Frame it as the flagship: the thinnest, newest, most powerful AI of the iFLYTEK line.</p></div>
+        </div>
+      </div>
+      <p class="fliphint">tap card to flip ⇄</p>
+      <div class="pgrid">
+        <div class="pblock"><h4><svg class="ic"><use href="#i-spark"/></svg>Key talking points</h4><ul>
+          <li>iFLYTEK's thinnest paper tablet yet, powered by the latest LLM AI</li>
+          <li>Paper-like E-Ink writing — no glare, easy on the eyes for hours</li>
+          <li>Records + transcribes while you handwrite; handwriting syncs to audio timeline</li>
+          <li>AI meeting summaries, AI search across notes, chat-with-AI on device</li>
+          <li>The step-up over the Air 2 for executives and power users</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-target"/></svg>Best-fit customers</h4><ul>
+          <li>Note-heavy professionals who still prefer pen on paper</li>
+          <li>Customers comparing reMarkable / Kindle Scribe — ours adds voice AI</li>
+          <li>Anyone who loved the Air 2 demo and asks "is there a better one?"</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-bulb"/></svg>Demo tips</h4><ul>
+          <li>Let them write first — the pen feel sells itself</li>
+          <li>Record 20s while writing a keyword, then tap it to replay that audio</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-shield"/></svg>Objection handling</h4>
+          <p class="objection"><b>"Why not just an iPad?"</b>An iPad is a distraction machine with a glass screen. This does one job perfectly: notes. Paper feel, long battery, and AI that ties your handwriting to the recording — an iPad can't do that.</p>
+          <p class="objection"><b>"AINOTE 2 or Air 2?"</b>Want the best and newest → AINOTE 2. Want great value and portability → Air 2. (See the comparison table below.)</p>
+        </div>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/iflytek-ainote-2-mp00867833" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>iShopChangi listing</a>
+        <a class="plink vid" href="https://youtu.be/UCwhHaNuTUo" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Product video</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ P6 AINOTE AIR 2 ============ -->
+  <article class="prod reveal" id="p6">
+    <div class="pv">
+      <span class="pvno">06 / 06</span><span class="pvbrand">iFLYTEK</span>
+      <svg viewBox="0 0 220 220" role="img" aria-label="iFLYTEK AINOTE Air 2 render">
+        <defs>
+          <linearGradient id="air-paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6fa"/><stop offset="1" stop-color="#e2e6f0"/></linearGradient>
+          <radialGradient id="air-floor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#38e1ff" stop-opacity=".4"/><stop offset="1" stop-color="#38e1ff" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="110" cy="200" rx="74" ry="12" fill="url(#air-floor)"/>
+        <rect x="64" y="34" width="96" height="148" rx="10" fill="#3c4360" stroke="rgba(180,195,255,.3)" stroke-width="1.4"/>
+        <rect x="71" y="41" width="82" height="134" rx="4" fill="url(#air-paper)"/>
+        <rect x="79" y="52" width="34" height="12" rx="6" fill="#4d7dff" opacity=".16"/>
+        <circle cx="86" cy="58" r="3" fill="#4d7dff"/>
+        <path d="M93 58 h14" stroke="#4d7dff" stroke-width="2" stroke-linecap="round"/>
+        <path d="M79 80 q8 -8 13 0 t13 0 t13 0" stroke="#39415e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="79" y1="98" x2="145" y2="98" stroke="#aab2c8" stroke-width="2.4"/>
+        <line x1="79" y1="110" x2="133" y2="110" stroke="#aab2c8" stroke-width="2.4"/>
+        <rect x="79" y="126" width="9" height="9" rx="2.5" fill="none" stroke="#4d7dff" stroke-width="1.8"/>
+        <path d="M81 130.5 l2.5 2.5 4 -5" stroke="#4d7dff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="94" y1="130" x2="140" y2="130" stroke="#aab2c8" stroke-width="2.4"/>
+        <rect x="79" y="144" width="9" height="9" rx="2.5" fill="none" stroke="#8b5cf6" stroke-width="1.8"/>
+        <line x1="94" y1="148" x2="128" y2="148" stroke="#aab2c8" stroke-width="2.4"/>
+        <path d="M44 86 q-7 12 0 24 M36 78 q-12 20 0 40" stroke="#38e1ff" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".85"/>
+      </svg>
+    </div>
+    <div>
+      <span class="ptag">E-Ink AI Paper Tablet · 8.2″ Portable</span>
+      <h3>iFLYTEK AINOTE Air 2</h3>
+      <p class="oneliner">The portable 8.2″ E-Ink AI notebook — real-time voice-to-text, handwriting recognition, week-long battery.</p>
+      <div class="pricebar">
+        <span class="price-rrp">SG retail ref <s>S$549</s></span>
+        <span class="price-live">Lower on iShopChangi</span>
+        <span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST SAVINGS — SCAN QR</span>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-chip"/></svg>8.2″ E-Ink · 293 PPI</span>
+        <span class="chip"><svg class="ic"><use href="#i-globe"/></svg>17 Voice / 83 Handwriting</span>
+        <span class="chip"><svg class="ic"><use href="#i-battery"/></svg>~7-Day Battery</span>
+        <span class="chip"><svg class="ic"><use href="#i-pen"/></svg>4096-Level Stylus</span>
+      </div>
+      <div class="pitchflip" tabindex="0" role="button" aria-label="Flip pitch card">
+        <div class="pitchinner">
+          <div class="pface front"><span class="lbl">▶ 30-second pitch — what you say</span><p>"A digital notebook that listens while you write. Live transcription in 17 languages, your handwriting converted to text in 83, AI summaries after every meeting — and the battery lasts about a week. Everything a paper notebook should have become."</p></div>
+          <div class="pface back"><span class="lbl">◀ Why it works</span><p>The <b>17 / 83 language numbers land hard at Tampines</b> — demo Mandarin or Malay transcription for multilingual families. "About a week of battery" is the anti-iPad line: this never needs nightly charging.</p></div>
+        </div>
+      </div>
+      <p class="fliphint">tap card to flip ⇄</p>
+      <div class="pgrid">
+        <div class="pblock"><h4><svg class="ic"><use href="#i-spark"/></svg>Key talking points</h4><ul>
+          <li>8.2″ E-Ink, 293 PPI; stylus with 4,096 pressure levels — true paper feel</li>
+          <li>Real-time voice-to-text in 17 languages, with translation</li>
+          <li>Handwriting-to-text in 83 languages; tap notes to replay linked audio</li>
+          <li>AI meeting summaries, AI search, on-device AI chat</li>
+          <li>~7 days battery in daily use, up to 108 days standby</li>
+          <li>Dual-tone reading light (24 levels), PDF/ePub annotation, cloud sync</li>
+          <li>Handwritten symbols auto-become to-dos and schedule items</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-target"/></svg>Best-fit customers</h4><ul>
+          <li>Students and lecture-goers — the strong value pick</li>
+          <li>Professionals wanting paper-tablet + transcription below flagship price</li>
+          <li>Multilingual households — translation demos convert here</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-bulb"/></svg>Demo tips</h4><ul>
+          <li>Demo live transcription in the customer's own language</li>
+          <li>Write messy handwriting → one-tap convert to clean text — always gets a reaction</li>
+          <li>Note: voice transcription and handwriting conversion can't run simultaneously — finish one first</li>
+        </ul></div>
+        <div class="pblock"><h4><svg class="ic"><use href="#i-shield"/></svg>Objection handling</h4>
+          <p class="objection"><b>"It's pricey for a notebook."</b>It replaces a recorder, a transcription service, a translator and every notebook you'll ever buy — and on iShopChangi you skip the GST too.</p>
+        </div>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/iflytek-ainote-air-2-mp00866914" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>iShopChangi listing</a>
+        <a class="plink vid" href="https://youtu.be/covNhxCefto" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Product video</a>
+      </div>
+    </div>
+  </article>
+
+  <button class="mdone" data-m="products">Mark module complete ✓</button>
+</section>
+
+<!-- ================= 3. COMPARE ================= -->
+<section id="compare">
+  <p class="kicker reveal">Module 03 · Side by Side</p>
+  <h2 class="reveal">Cheat-sheet comparison</h2>
+  <p class="lede reveal">When customers ask "what's the difference?", answer from this table — never guess.</p>
+  <div class="card cmpwrap reveal" style="padding:8px 18px 18px">
+    <table>
+      <thead><tr><th></th><th>Steed Companion</th><th>Note Pro</th><th>NotePin S</th><th>Liberty 5 Pro Max</th><th>AINOTE 2</th><th>AINOTE Air 2</th></tr></thead>
+      <tbody>
+        <tr><td>What it is</td><td>Emotional companion robot</td><td>Card-thin AI recorder</td><td>Wearable AI recorder</td><td>ANC earbuds + AI case</td><td>Flagship E-Ink AI tablet</td><td>8.2″ E-Ink AI tablet</td></tr>
+        <tr><td>Hero feature</td><td>Companionship for seniors</td><td>Records calls + meetings, auto mode</td><td>Hands-free wear, Press to Highlight</td><td>Case records &amp; summarises meetings</td><td>Handwriting linked to audio, top AI</td><td>17-lang live transcription, 83-lang handwriting</td></tr>
+        <tr><td>Recording</td><td>—</td><td>Up to 50 hrs</td><td>Up to 20 hrs</td><td>In-room via case</td><td>While you write</td><td>While you write</td></tr>
+        <tr><td>Languages (AI)</td><td>Conversational</td><td>112 transcription</td><td>112 transcription</td><td>Transcription + live translation</td><td>Multi-language</td><td>17 voice / 83 handwriting</td></tr>
+        <tr><td>Wear / carry</td><td>Home device</td><td>Snaps to phone</td><td>Pin · clip · necklace · wristband</td><td>In your ears / pocket</td><td>Slim tablet</td><td>Light 8.2″ tablet</td></tr>
+        <tr><td>Sell it to…</td><td>Children of elderly parents</td><td>Meeting-heavy pros</td><td>On-the-move pros, students</td><td>Earbud shoppers, travellers</td><td>Executives who handwrite</td><td>Students, value seekers</td></tr>
+        <tr><td>Price anchor</td><td>QR for price</td><td>RRP S$259 → less on iSC</td><td>RRP S$249 → less on iSC</td><td>Launch S$299 → less on iSC</td><td>QR for price</td><td>Retail S$549 → less on iSC</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <button class="mdone" data-m="compare">Mark module complete ✓</button>
+</section>
+
+<!-- ================= 4. MATCHER ================= -->
+<section id="matcher">
+  <p class="kicker reveal">Module 04 · Hear This → Recommend That</p>
+  <h2 class="reveal">Customer matcher</h2>
+  <p class="lede reveal">Tap each line a visitor might say to reveal the right recommendation.</p>
+  <div class="matcher stagger">
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>"I'm always in meetings and never have time for notes."</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner"><b>PLAUD Note Pro.</b> Lead with 5m pickup + auto call/meeting mode. Close: "It pays for itself in one week of saved typing — and the QR price beats retail with GST savings."</div></div></div>
+    </div>
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>"I'm a student, I record lectures on my phone."</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner"><b>NotePin S</b> (hands-free, wearable) or <b>AINOTE Air 2</b> if they handwrite. Ask: "Do you write while you listen?" Writers → Air 2.</div></div></div>
+    </div>
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>"Looking for new earbuds, mine are dying."</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner"><b>Liberty 5 Pro Max.</b> Give them earbuds talk first, then flip the case open: "And this is the part no other earbuds have." The AI case closes it.</div></div></div>
+    </div>
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>"My mother lives alone, I worry about her."</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner"><b>Steed AI Companion.</b> Empathy before specs. Companionship + safety, Singapore company. Let the senior interact with it if present — delight does the selling.</div></div></div>
+    </div>
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>"I love handwriting but hate typing it up after."</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner"><b>AINOTE 2</b> (flagship) or <b>Air 2</b> (value). Demo handwriting-to-text instantly. "Best one" → AINOTE 2; "good and portable" → Air 2.</div></div></div>
+    </div>
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>"I deal with overseas clients in different languages."</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner"><b>Two paths:</b> PLAUD (112-language transcription) for records and minutes; <b>Liberty 5 Pro Max</b> for live conversation translation. Ask: records, or real-time talk?</div></div></div>
+    </div>
+    <div class="match">
+      <button class="match-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>"Just looking." (non-committal browser)</button>
+      <div class="match-a-wrap"><div class="match-a"><div class="match-a-inner"><b>Don't pitch — demo.</b> "Quick — say anything for 5 seconds." Show the instant transcript. If still cold: "Everything's on iShopChangi with GST savings — scan so you have it for later." A scan today is a sale tonight.</div></div></div>
+    </div>
+  </div>
+  <button class="mdone" data-m="matcher">Mark module complete ✓</button>
+</section>
+
+<!-- ================= 5. ROLEPLAY ================= -->
+<section id="roleplay">
+  <p class="kicker reveal">Module 05 · Booth Simulator</p>
+  <h2 class="reveal">Role-play: choose your reply</h2>
+  <p class="lede reveal">Three real booth situations. Pick the response you'd give — get instant coaching.</p>
+  <div class="rp card reveal" id="rpbox"></div>
+  <button class="mdone" data-m="roleplay">Mark module complete ✓</button>
+</section>
+
+<!-- ================= 6. QUIZ ================= -->
+<section id="quiz">
+  <p class="kicker reveal">Module 06 · Certification Check</p>
+  <h2 class="reveal">Are you booth-ready?</h2>
+  <p class="lede reveal">10 questions. Score 9+ to certify yourself ready for Day 1.</p>
+  <div id="quizwrap"></div>
+  <div class="score card">Score: <span id="scorenum">0</span> / 10 <span id="verdict"></span>
+  <button id="retryQuiz">↺ Retake quiz</button></div>
+</section>
+
+<!-- ================= 7. CONDUCT + LOGISTICS ================= -->
+<section id="conduct">
+  <p class="kicker reveal">Module 07 · Booth Conduct &amp; Run-of-Show</p>
+  <h2 class="reveal">Do's, Don'ts &amp; logistics</h2>
+  <div class="dd stagger">
+    <div class="ddcol card do">
+      <h3><svg class="ic"><use href="#i-check"/></svg>Do</h3>
+      <ul>
+        <li>Keep all 6 demo units charged; QR standee visible and tested every morning</li>
+        <li>Demo in the visitor's preferred language where supported</li>
+        <li>End every conversation with the QR ask — even browsers</li>
+        <li>Hand devices to customers; touch sells</li>
+        <li>Be honest about limits (e.g. Liberty case records in-person audio only)</li>
+        <li>Tell people you're recording before demo recordings</li>
+        <li>Log unanswered questions; report nightly to the supervisor</li>
+      </ul>
+    </div>
+    <div class="ddcol card dont">
+      <h3><svg class="ic"><use href="#i-x"/></svg>Don't</h3>
+      <ul>
+        <li>Don't quote prices from memory — open the iShopChangi listing live; prices there carry the GST savings</li>
+        <li>Don't invent specs. "Let me check that for you" beats a wrong answer</li>
+        <li>Don't process any payment at the booth — all checkout is QR → iShopChangi</li>
+        <li>Don't crowd one visitor while others wait — close or hand off</li>
+        <li>Don't leave the booth unmanned; coordinate breaks</li>
+        <li>Don't bad-mouth other exhibitors' products — compare on facts only</li>
+      </ul>
+    </div>
+  </div>
+  <div style="height:16px"></div>
+  <div class="loggrid stagger">
+    <div class="logcard card"><h3><svg class="ic"><use href="#i-pin"/></svg>Where &amp; when</h3><p>Our Tampines Hub, 1 Tampines Walk — Metapod booth, <b>Interactive Experience zone</b>. <b>19–21 June, 12pm–8pm.</b> (Static displays ran 16–18 Jun; our window is the interactive days.) Arrive 30 min early for setup.</p></div>
+    <div class="logcard card"><h3><svg class="ic"><use href="#i-bolt"/></svg>Opening checklist</h3><ul><li>6 demo units charged, apps logged in</li><li>Test-scan the QR yourself</li><li>Wi-Fi / hotspot live for demos</li><li>Brochures stocked, counter tidy</li></ul></div>
+    <div class="logcard card"><h3><svg class="ic"><use href="#i-cart"/></svg>Checkout path</h3><p>Visitor scans QR → <b>iShopChangi</b> product page → add to cart → pays on their phone with <b>GST savings</b>, home delivery. QR fails? Search the product name on ishopchangi.com together.</p></div>
+    <div class="logcard card"><h3><svg class="ic"><use href="#i-users"/></svg>Crowd notes</h3><p>Expect families, seniors, students — often together. Weekend (20–21 Jun) peaks after 2pm. Keep pitches short during peaks; the exhibition also runs workshops and talks that release crowds in waves.</p></div>
+    <div class="logcard card"><h3><svg class="ic"><use href="#i-clock"/></svg>Closing checklist</h3><ul><li>Charge all units overnight</li><li>Secure demo devices and stock</li><li>Report the day's FAQs and objections</li></ul></div>
+    <div class="logcard card"><h3><svg class="ic"><use href="#i-alert"/></svg>Escalate to supervisor</h3><ul><li>Warranty / refund questions</li><li>Bulk or corporate purchase enquiries</li><li>Press, influencer or organiser requests</li><li>Faulty demo units</li></ul></div>
+  </div>
+  <button class="mdone" data-m="conduct">Mark module complete ✓</button>
+</section>
+
+<footer>
+  <p class="fbrand">METAPOD × TAMPINES AI EXHIBITION</p>
+  Interactive Experience <b>19–21 June 2026, 12pm–8pm</b> · Our Tampines Hub<br>
+  Every conversation ends with the QR. <b>Scan → iShopChangi → GST savings.</b>
+</footer>
+
+<script>
+/* ===== live countdown ===== */
+(function(){
+  const start=new Date('2026-06-19T12:00:00+08:00'), end=new Date('2026-06-21T20:00:00+08:00');
+  const D=document.getElementById('cdD'),H=document.getElementById('cdH'),M=document.getElementById('cdM'),S=document.getElementById('cdS'),
+        label=document.getElementById('cdLabel'),box=document.getElementById('cd');
+  const pad=n=>String(n).padStart(2,'0');
+  function tick(){
+    const now=new Date();
+    if(now<start){
+      let ms=start-now;
+      const d=Math.floor(ms/86400000); ms-=d*86400000;
+      const h=Math.floor(ms/3600000);  ms-=h*3600000;
+      const m=Math.floor(ms/60000);    ms-=m*60000;
+      const s=Math.floor(ms/1000);
+      D.textContent=pad(d);H.textContent=pad(h);M.textContent=pad(m);S.textContent=pad(s);
+      label.textContent='UNTIL BOOTH OPENS — FINISH ALL 7 MODULES BEFORE THEN';
+    }else if(now<=end){
+      box.style.display='none';
+      label.textContent='● EVENT IS LIVE — GOOD LUCK OUT THERE. EVERY SCAN COUNTS.';
+      label.classList.add('live');
+    }else{
+      box.style.display='none';
+      label.textContent='EVENT CONCLUDED — KEEP THIS PAGE FOR THE NEXT ACTIVATION.';
+    }
+  }
+  tick();setInterval(tick,1000);
+})();
+
+/* ===== scroll reveal (once, decorative) ===== */
+(function(){
+  const els=document.querySelectorAll('.reveal,.stagger');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{rootMargin:'0px 0px -60px 0px',threshold:.08});
+  els.forEach(e=>io.observe(e));
+})();
+
+/* ===== module progress (in-memory by design) ===== */
+const MODULES=['flow','products','compare','matcher','roleplay','quiz','conduct'];
+const doneSet=new Set();
+function refreshPill(){document.getElementById('progressPill').textContent=`${doneSet.size} / ${MODULES.length} modules`;}
+document.querySelectorAll('.mdone').forEach(b=>b.addEventListener('click',()=>{
+  const m=b.dataset.m;
+  if(doneSet.has(m)){doneSet.delete(m);b.classList.remove('done');b.textContent='Mark module complete ✓';}
+  else{doneSet.add(m);b.classList.add('done');b.textContent='Module complete ✓';}
+  refreshPill();
+}));
+refreshPill();
+
+/* ===== pitch flip cards ===== */
+document.querySelectorAll('.pitchflip').forEach(c=>{
+  const flip=()=>c.classList.toggle('flipped');
+  c.addEventListener('click',flip);
+  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip();}});
+});
+
+/* ===== matcher accordion ===== */
+document.querySelectorAll('.match-q').forEach(b=>b.addEventListener('click',()=>{
+  const open=b.getAttribute('aria-expanded')==='true';
+  b.setAttribute('aria-expanded',String(!open));
+  b.closest('.match').classList.toggle('open',!open);
+}));
+
+/* ===== roleplay ===== */
+const SCENES=[
+ {scene:`An <b>auntie in her 60s</b> wanders over with her adult daughter. The daughter says: "Ma, look, robots." The auntie smiles but says nothing. What do you do?`,
+  opts:[
+   {t:`Launch into the Steed Companion spec list: voice AI, IoT ecosystem, emergency-call integration.`,g:'bad',v:`❌ Specs at a senior is a wall, not a bridge. You also pitched the wrong person — the daughter is the buyer, but the auntie's delight is the demo.`},
+   {t:`Invite the auntie to say hello to the robot, let it respond, then turn to the daughter: "It keeps her company even when you're at work."`,g:'best',v:`✅ Perfect. Demo to the user, sell to the buyer. One sentence of benefit beats a minute of features — close with the QR and the GST-savings line.`},
+   {t:`Hand the daughter a brochure and say prices are on iShopChangi.`,g:'meh',v:`⚠️ Too passive. The QR comes AFTER interest is built, not instead of building it. Brochures don't demo delight.`}
+  ]},
+ {scene:`A man in office wear picks up the <b>Liberty 5 Pro Max case</b>, taps the screen, and says: "Cool. But $300 for earbuds is steep."`,
+  opts:[
+   {t:`"Actually on iShopChangi it's less than that — you save the GST. And it's not just earbuds: the case records and summarises your meetings, and the buds hold a Guinness record for call clarity. Two devices, one price."`,g:'best',v:`✅ Reframe the price two ways at once: GST-savings on the number, and "two devices in one" on the value. Anchor + record = credibility.`},
+   {t:`"There are cheaper Soundcore models elsewhere if budget matters."`,g:'bad',v:`❌ You just sent your customer to another shop. Defend value before retreating on price — and the GST-savings line was sitting right there.`},
+   {t:`"It's premium, but quality costs."`,g:'meh',v:`⚠️ True but empty. Give him a reason: AI case, world record, GST savings. Vague value statements don't move S$300 decisions.`}
+  ]},
+ {scene:`A poly student says: "I record lectures on my phone but I never re-listen — too long." Friends are pulling her away.`,
+  opts:[
+   {t:`Ask her to wait while you fetch the NotePin S box and run the full demo.`,g:'meh',v:`⚠️ Read the room — her friends are leaving. Compress: one line, one wow, one scan.`},
+   {t:`"That's exactly the problem these fix — they SUMMARISE it so you never re-listen. Scan this before you go; the student-budget one is the wearable pin, with GST savings on the site."`,g:'best',v:`✅ Speed-close. You named her pain, gave the one-line fix, and got the scan — which converts later even when the visit doesn't.`},
+   {t:`Let her go — students rarely buy anyway.`,g:'bad',v:`❌ Students are a core segment for NotePin S and AINOTE Air 2, and a scan costs her nothing. Never skip the QR ask.`}
+  ]}
+];
+let sidx=0;
+const rpbox=document.getElementById('rpbox');
+function renderScene(){
+  const s=SCENES[sidx];
+  rpbox.innerHTML=`<p class="scene"><span class="mono" style="font-size:11px;letter-spacing:.22em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">SCENARIO ${sidx+1} / ${SCENES.length}</span><br><br>${s.scene}</p><div class="opts"></div><div class="verdict"></div><button class="nextbtn">${sidx<SCENES.length-1?'Next scenario →':'↺ Restart scenarios'}</button>`;
+  const opts=rpbox.querySelector('.opts'), verdict=rpbox.querySelector('.verdict'), nxt=rpbox.querySelector('.nextbtn');
+  s.opts.forEach(o=>{
+    const b=document.createElement('button');b.className='opt';b.textContent=o.t;
+    b.addEventListener('click',()=>{
+      opts.querySelectorAll('.opt').forEach((x,i)=>x.classList.add(s.opts[i].g));
+      verdict.innerHTML=o.v;verdict.classList.add('show');nxt.classList.add('show');
+    });
+    opts.appendChild(b);
+  });
+  nxt.addEventListener('click',()=>{sidx=(sidx+1)%SCENES.length;renderScene();});
+}
+renderScene();
+
+/* ===== quiz ===== */
+const QUIZ=[
+ {q:"Which days is OUR booth window (Interactive Experience)?",o:["16–18 June","16–21 June","19–21 June","20–22 June"],a:2,fb:"19–21 June. The 16–18 Jun static-display days are not our shift."},
+ {q:"The ONLY way customers buy at this event:",o:["Cash at booth","Card terminal at booth","Scan QR → purchase on iShopChangi","Paper order form"],a:2,fb:"No payments at the booth — QR → iShopChangi, on the customer's own phone, with GST savings."},
+ {q:"Your strongest universal closing line includes…",o:["A discount you invent on the spot","The GST savings on iShopChangi","A free gift promise","Price matching other stores"],a:1,fb:"GST savings is the official, always-true price advantage. Never invent discounts or gifts."},
+ {q:"A customer needs to record phone calls. Recommend:",o:["Liberty 5 Pro Max","PLAUD Note Pro","AINOTE Air 2","Steed Companion"],a:1,fb:"Note Pro's smart dual-mode auto-switches between phone calls and in-person meetings."},
+ {q:"PLAUD transcription supports how many languages?",o:["17","83","100","112"],a:3,fb:"112 — a key hook for multilingual Singapore."},
+ {q:"What makes the Liberty 5 Pro Max case special?",o:["Solar charging","AMOLED touchscreen + built-in AI note-taker","Phone power bank","10m waterproofing"],a:1,fb:"The 1.78″ touchscreen case records, transcribes and summarises in-room meetings on its own."},
+ {q:"The honest limit of the Liberty case you must disclose:",o:["No music while recording","Records in-person audio only — not phone/online calls","iPhone only","No ANC in the buds"],a:1,fb:"In-person only. Need call/online recording? Cross-sell PLAUD."},
+ {q:"AINOTE Air 2 converts handwriting to text in __ languages, voice in __:",o:["83 / 17","17 / 83","112 / 17","83 / 112"],a:0,fb:"83 handwriting / 17 voice. Also note: the two can't run simultaneously."},
+ {q:"Ideal buyer of the Steed AI Companion:",o:["Gamers","Adults buying for elderly parents living alone","Frequent flyers","Podcasters"],a:1,fb:"Eldercare companion — sell peace of mind to the adult child, demo delight to the senior."},
+ {q:"Customer torn between Note Pro and NotePin S. Best question:",o:["What's your budget?","Favourite colour?","Where do your conversations happen — desk, or on the move?","iPhone or Android?"],a:2,fb:"Desk + calls → Note Pro. Moving, hands-free → NotePin S. Same app and AI."}
+];
+const wrap=document.getElementById('quizwrap');
+let score=0,answered;
+function buildQuiz(){
+  wrap.innerHTML='';score=0;answered=new Set();
+  document.getElementById('scorenum').textContent='0';
+  document.getElementById('verdict').textContent='';
+  document.getElementById('retryQuiz').classList.remove('show');
+  QUIZ.forEach((item,i)=>{
+    const card=document.createElement('div');card.className='quiz-card card';
+    card.innerHTML=`<div class="qn">QUESTION ${i+1} / ${QUIZ.length}</div><p class="qtext">${item.q}</p>`;
+    item.o.forEach((opt,j)=>{
+      const b=document.createElement('button');b.className='qopt';b.textContent=opt;
+      b.addEventListener('click',()=>{
+        if(answered.has(i))return;
+        answered.add(i);
+        const fb=document.createElement('div');fb.className='qfb';
+        if(j===item.a){b.classList.add('correct');score++;fb.classList.add('good');fb.textContent='✅ Correct — '+item.fb;}
+        else{b.classList.add('wrong');fb.classList.add('bad');fb.textContent='❌ Not quite — '+item.fb;
+          card.querySelectorAll('.qopt')[item.a].classList.add('correct');}
+        card.appendChild(fb);
+        requestAnimationFrame(()=>requestAnimationFrame(()=>fb.classList.add('show')));
+        document.getElementById('scorenum').textContent=score;
+        if(answered.size===QUIZ.length){
+          const v=document.getElementById('verdict');
+          v.textContent= score>=9 ? '🏆 CERTIFIED BOOTH-READY. See you on the 19th.' :
+                          score>=7 ? 'Almost there — re-read the product trainer and retake.' :
+                          'Restudy Modules 2–4, then retake before your shift.';
+          document.getElementById('retryQuiz').classList.add('show');
+        }
+      });
+      card.appendChild(b);
+    });
+    wrap.appendChild(card);
+  });
+}
+document.getElementById('retryQuiz').addEventListener('click',()=>{buildQuiz();document.getElementById('quiz').scrollIntoView();});
+buildQuiz();
+</script>
+</body>
+</html>
