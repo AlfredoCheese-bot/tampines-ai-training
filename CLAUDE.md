@@ -38,7 +38,7 @@ All prices are RRP references; site instructs promoters to quote the live iShopC
 - Liberty 5 Pro Max: 1.78" AMOLED touchscreen case with built-in AI note-taker (in-person audio ONLY — not calls/online; must disclose honestly), Thus AI chip, Guinness World Record speech quality (Liberty 5 Pro buds, same units), ANC 4.0, 6.5/28hr, 120 free transcription mins/mo for 24 months.
 - AINOTE Air 2: 8.2" E-Ink 293 PPI, 4096-level stylus, 17-language voice transcription, 83-language handwriting conversion (cannot run both simultaneously), ~7-day battery, 108-day standby.
 - AINOTE 2: newest/thinnest iFLYTEK flagship, LLM-powered; fewer published specs — keep claims general.
-- Steed: Steed Innovation, SG company founded 2022, "IoT + AI + People's Care", eldercare ecosystem.
+- Steed: Steed Innovation, SG company founded 2022, "IoT + AI + People's Care". Emotional companion robot for BOTH children and seniors (confirmed by booth owner 2026-06-13) — cute fuzzy design wins kids; eldercare line (SOS/contact-free monitoring) serves seniors. Position as all-ages, NOT seniors-only. Kids angle = "a talking buddy, not another screen"; senior angle = companionship + peace of mind for the family.
 
 ## Design system (inspired by PLAUD-AI-Poster-updated.jpg, redesigned 2026-06-13)
 - Palette: near-black bg #04040c/#0a0c1e, electric blue #4d7dff, violet #8b5cf6, cyan #38e1ff, accent gradient cyan→blue→violet, text #f2f5ff, dim #8e96bb, gold #ffd166 (GST/price only), danger #ff6b6b, ok #34d399
