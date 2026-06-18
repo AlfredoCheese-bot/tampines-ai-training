@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Line-up · Tampines AI Exhibition · Metapod Booth</title>
+<meta name="description" content="Explore six standout AI devices from the Tampines AI Exhibition — AI note-takers, a family companion robot, and AI earbuds. Read the specs, then shop on iShopChangi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg0:#04040c; --bg1:#0a0c1e; --ink:#f2f5ff; --dim:#8e96bb; --faint:#5a6184;
+  --blue:#4d7dff; --violet:#8b5cf6; --cyan:#38e1ff; --gold:#ffd166; --ok:#34d399; --danger:#ff6b6b;
+  --line:rgba(125,145,255,.15); --line2:rgba(125,145,255,.28); --glass:rgba(140,160,255,.05); --panel:rgba(13,16,36,.72);
+  --grad:linear-gradient(90deg,#38e1ff,#4d7dff 50%,#8b5cf6);
+  --ease:cubic-bezier(.23,1,.32,1); --ease-io:cubic-bezier(.77,0,.175,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);line-height:1.65;font-size:16px;
+  background:
+    radial-gradient(1000px 540px at 80% -10%, rgba(77,125,255,.16), transparent 60%),
+    radial-gradient(800px 600px at -15% 18%, rgba(139,92,246,.13), transparent 55%),
+    radial-gradient(900px 500px at 50% 105%, rgba(56,225,255,.07), transparent 60%),
+    linear-gradient(180deg,#070818 0%, var(--bg0) 50%, #05050f 100%);
+  background-attachment:fixed;}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.1;letter-spacing:-.01em}
+.mono{font-family:'Space Grotesk',monospace}
+a{color:var(--cyan)}
+::selection{background:rgba(77,125,255,.4)}
+.grid-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background:linear-gradient(rgba(125,145,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(125,145,255,.04) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(900px 600px at 50% 12%, #000 0%, transparent 75%);
+  -webkit-mask-image:radial-gradient(900px 600px at 50% 12%, #000 0%, transparent 75%);}
+.ic{width:15px;height:15px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* topbar */
+.topbar{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(5,6,16,.78);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:18px;padding:11px 22px;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.08em;overflow-x:auto;white-space:nowrap}
+.topbar::-webkit-scrollbar{display:none}
+.brand{display:flex;align-items:center;gap:10px;flex:none;font-weight:700;letter-spacing:.28em;font-size:12.5px}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.topbar a{color:var(--dim);text-decoration:none;flex:none;transition:color 150ms ease}
+.topbar a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--cyan)}
+.topbar .gap{flex:1}
+.topbar .shopcta{flex:none;background:var(--grad);color:#05060f;border-radius:999px;padding:6px 15px;font-weight:700;letter-spacing:.04em}
+
+/* hero */
+.hero{max-width:1140px;margin:0 auto;padding:74px 22px 26px;text-align:center;position:relative}
+.hero .org{font-family:'Space Grotesk',monospace;font-size:11.5px;letter-spacing:.34em;color:var(--dim);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(40px,7.4vw,82px);font-weight:700;text-transform:uppercase;letter-spacing:.01em;
+  background:linear-gradient(180deg,#fff 25%,#a8c2ff 75%,#7d9bff);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 28px rgba(77,125,255,.35))}
+.hero h1 .thin{display:block;font-size:.3em;font-weight:600;letter-spacing:.42em;margin-top:14px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:none}
+.hero .sub{color:var(--dim);max-width:62ch;margin:24px auto 0;font-size:16px}
+.hero .sub b{color:var(--ink)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(125,145,255,.12);background:var(--glass);
+  border-radius:12px;padding:11px 16px;font-family:'Space Grotesk',monospace;font-size:12.5px;color:var(--dim)}
+.badge b{color:var(--ink);font-weight:600}
+.badge .ic{color:var(--blue)}
+.badge.gold{border-color:rgba(255,209,102,.45)}
+.badge.gold b,.badge.gold .ic{color:var(--gold)}
+.badge.live{border-color:rgba(52,211,153,.5)}
+.badge.live b,.badge.live .ic{color:var(--ok)}
+.heroshop{margin-top:30px}
+.bigshop{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#05060f;text-decoration:none;font-weight:700;
+  font-family:'Space Grotesk',sans-serif;font-size:15px;border-radius:14px;padding:14px 26px;
+  transition:transform 160ms var(--ease),box-shadow 200ms ease}
+.bigshop:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.bigshop:hover{box-shadow:0 0 28px rgba(77,125,255,.5)}}
+
+/* marquee */
+.marquee{margin-top:50px;border-block:1px solid var(--line);overflow:hidden;padding:13px 0;
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee .track{display:flex;gap:0;width:max-content;animation:scroll 30s linear infinite}
+.marquee span{font-family:'Space Grotesk',monospace;font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--faint);padding:0 28px;white-space:nowrap}
+.marquee span i{font-style:normal;color:var(--blue)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* sections */
+section{max-width:1140px;margin:0 auto;padding:64px 22px 8px}
+.kicker{font-family:'Space Grotesk',monospace;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;margin-bottom:10px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+section>h2{font-size:clamp(28px,3.8vw,44px);font-weight:700;margin-bottom:10px}
+.lede{color:var(--dim);max-width:68ch;margin-bottom:30px;font-size:15.5px}
+.lede b{color:var(--ink)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(20px)}
+.reveal.in{opacity:1;transform:none;transition:opacity 550ms var(--ease),transform 550ms var(--ease)}
+.stagger>*{opacity:0;transform:translateY(14px)}
+.stagger.in>*{opacity:1;transform:none;transition:opacity 480ms var(--ease),transform 480ms var(--ease)}
+.stagger.in>:nth-child(1){transition-delay:0ms}.stagger.in>:nth-child(2){transition-delay:50ms}
+.stagger.in>:nth-child(3){transition-delay:100ms}.stagger.in>:nth-child(4){transition-delay:150ms}
+.stagger.in>:nth-child(5){transition-delay:200ms}.stagger.in>:nth-child(6){transition-delay:250ms}
+button{font-family:inherit}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
+
+/* product index */
+.pindex{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:48px}
+.pidx{display:flex;flex-direction:column;gap:4px;text-decoration:none;border:1px solid var(--line);background:var(--glass);
+  border-radius:14px;padding:14px 15px;transition:transform 180ms var(--ease),border-color 180ms ease}
+.pidx:active{transform:scale(.97)}
+.pidx .no{font-family:'Space Grotesk',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--faint)}
+.pidx .nm{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;color:var(--ink);line-height:1.25}
+.pidx .cat{font-size:11px;color:var(--dim)}
+.pidx::after{content:"↓ TAP TO JUMP";margin-top:7px;font-family:'Space Grotesk',monospace;font-size:9px;letter-spacing:.2em;color:var(--faint);transition:color 150ms ease}
+@media (hover:hover) and (pointer:fine){.pidx:hover{border-color:var(--blue);transform:translateY(-2px)}.pidx:hover::after{color:var(--cyan)}}
+
+/* product */
+.prod{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:42px;align-items:start;padding:46px 0 54px;border-top:1px solid var(--line);scroll-margin-top:80px}
+.prod:first-of-type{border-top:none;padding-top:8px}
+@media(max-width:880px){.prod{grid-template-columns:1fr;gap:26px}}
+.prod:nth-of-type(even) .pv{order:2}
+@media(max-width:880px){.prod:nth-of-type(even) .pv{order:0}}
+.pv{position:sticky;top:84px;border-radius:26px;border:1px solid var(--line2);overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%, rgba(77,125,255,.16), rgba(10,12,30,.6) 55%, rgba(5,5,14,.9));aspect-ratio:4/3}
+@media(max-width:880px){.pv{position:static}}
+.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.pv .pvno{position:absolute;top:14px;left:14px;font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.3em;color:#cfd6f4;background:rgba(5,6,16,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px 11px;border-radius:9px}
+.pv .pvbrand{position:absolute;top:14px;right:14px;font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.3em;color:#cfd6f4;text-transform:uppercase;background:rgba(5,6,16,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px 11px;border-radius:9px}
+.ptag{font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.26em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.prod h3{font-size:clamp(24px,3vw,34px);margin:8px 0 6px;font-weight:700}
+.prod h3 small{font-size:13px;color:var(--dim);font-weight:500;font-family:'Inter',sans-serif}
+.oneliner{font-size:15px;color:var(--dim);max-width:58ch}
+.pricebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 20px}
+.price-rrp{font-family:'Space Grotesk',monospace;font-size:13px;color:var(--faint)}
+.price-rrp s{opacity:.85}
+.price-live{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--gold)}
+.gstchip{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-family:'Space Grotesk',monospace;letter-spacing:.1em;
+  background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.4);color:var(--gold);border-radius:999px;padding:5px 12px}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:0 0 14px}
+.stat{border:1px solid var(--line2);border-radius:15px;padding:15px 10px 13px;text-align:center;background:linear-gradient(180deg,rgba(140,160,255,.08),rgba(140,160,255,.02))}
+.stat b{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:27px;line-height:1.05;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{display:block;margin-top:6px;font-family:'Space Grotesk',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(125,145,255,.1);background:var(--glass);border-radius:11px;padding:9px 13px;font-family:'Space Grotesk',monospace;font-size:12px;color:var(--ink)}
+.chip .ic{color:var(--blue)}
+.lab{display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin:22px 0 11px}
+.lab .ic{color:var(--blue)}
+.personas{display:flex;flex-wrap:wrap;gap:8px}
+.persona{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(125,145,255,.1);background:var(--glass);border-radius:999px;padding:8px 15px;font-size:13px;color:#d4dbf5}
+.honesty{display:flex;gap:11px;align-items:flex-start;border:1px solid rgba(255,209,102,.45);background:rgba(255,209,102,.07);border-radius:14px;padding:13px 16px;font-size:13px;color:#ffe9bd;margin-top:18px}
+.honesty .ic{color:var(--gold);margin-top:2px}
+.honesty b{color:var(--gold)}
+.plinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.plink{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;text-decoration:none;border-radius:11px;padding:11px 17px;font-family:'Space Grotesk',monospace;transition:transform 160ms var(--ease),box-shadow 200ms ease,background-color 160ms ease}
+.plink:active{transform:scale(.97)}
+.plink.buy{background:var(--grad);color:#05060f}
+.plink.vid{border:1px solid var(--line2);color:var(--ink);background:var(--glass)}
+@media (hover:hover) and (pointer:fine){.plink.buy:hover{box-shadow:0 0 24px rgba(77,125,255,.45)}.plink.vid:hover{border-color:var(--blue)}}
+
+/* plaud strip */
+.plaudstrip{padding:30px 28px;margin:0 0 6px;scroll-margin-top:80px}
+.plaudstrip .kicker{margin-bottom:9px}
+.plaudstrip h3{font-size:clamp(20px,2.5vw,28px);font-weight:700;margin-bottom:9px}
+.plaudstrip>p{color:var(--dim);font-size:14.5px;max-width:72ch;margin-bottom:22px}
+.plaudstrip>p b{color:var(--ink)}
+.plaudstrip .lab{margin:20px 0 11px}
+
+/* compare */
+.cmpwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:820px;font-size:13.5px}
+th,td{padding:12px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+td:first-child{color:var(--dim);font-weight:600;white-space:nowrap}
+tbody tr{transition:background-color 150ms ease}
+tbody tr:hover{background:rgba(77,125,255,.06)}
+
+/* faq accordion */
+.faq{display:grid;gap:10px}
+.qa{border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden;transition:border-color 180ms ease}
+.qa.open{border-color:rgba(77,125,255,.55)}
+.qa-q{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:none;color:var(--ink);padding:16px 19px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+.qa-q .ic{color:var(--blue);transition:transform 200ms var(--ease)}
+.qa.open .qa-q .ic{transform:rotate(45deg)}
+.qa-q::after{content:"TAP";margin-left:auto;flex:none;font-family:'Space Grotesk',monospace;font-size:9.5px;letter-spacing:.18em;color:var(--cyan);border:1px solid rgba(56,225,255,.5);border-radius:999px;padding:3px 10px}
+.qa.open .qa-q::after{content:"CLOSE";color:var(--dim);border-color:var(--line2)}
+@media (hover:hover) and (pointer:fine){.qa-q:hover{background:rgba(77,125,255,.06)}}
+.qa-a-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows 240ms var(--ease)}
+.qa.open .qa-a-wrap{grid-template-rows:1fr}
+.qa-a{overflow:hidden;font-size:14px;color:#c8d1f0}
+.qa-a-inner{padding:0 19px 17px;border-top:1px dashed var(--line);padding-top:13px}
+.qa-a b{color:var(--cyan)}
+
+/* how to buy */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.stepc{padding:22px 20px;position:relative;overflow:hidden}
+.stepc::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--grad);opacity:.6}
+.stepc .n{font-family:'Space Grotesk',monospace;font-weight:700;font-size:40px;line-height:1;color:transparent;-webkit-text-stroke:1.3px rgba(125,145,255,.7)}
+.stepc h3{font-size:17px;margin:12px 0 6px}
+.stepc p{font-size:13.5px;color:var(--dim)}
+.buybanner{margin-top:18px;border:1px solid rgba(255,209,102,.4);border-radius:16px;padding:20px 24px;font-size:15px;background:linear-gradient(90deg,rgba(255,209,102,.1),rgba(77,125,255,.07));display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between}
+.buybanner b{color:var(--gold)}
+.buybanner .bigshop{margin:0}
+
+/* find us */
+.findgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.findcard{padding:20px}
+.findcard h3{display:flex;align-items:center;gap:8px;font-size:14.5px;margin-bottom:9px;color:var(--cyan)}
+.findcard h3 .ic{color:var(--blue)}
+.findcard p,.findcard li{font-size:13.5px;color:#c0c9ea}
+.findcard b{color:var(--gold)}
+
+footer{margin-top:80px;border-top:1px solid var(--line);background:rgba(5,6,16,.7);text-align:center;padding:34px 20px;font-size:13px;color:var(--dim)}
+footer b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer .fbrand{font-family:'Space Grotesk',monospace;letter-spacing:.34em;font-size:12px;color:var(--ink);margin-bottom:10px}
+footer a{color:var(--dim)}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal,.stagger>*{transform:none}
+  .reveal.in,.stagger.in>*{transition:opacity 250ms ease}
+  .brand .dot,.marquee .track{animation:none}
+  .qa-a-wrap{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 5 13.5h6L10 22l9-11.5h-6L13 2z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2.5" y="8" width="16" height="8" rx="2"/><path d="M21.5 10.5v3"/><path d="M6 11v2M9.5 11v2M13 11v2"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M14.5 4.5 19.5 9.5 8 21H3v-5L14.5 4.5z"/><path d="M12.5 6.5l5 5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.8-3.4 7.9-8 9-4.6-1.1-8-4.2-8-9V6l8-3z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.8 6.3.7-4.7 4.3 1.3 6.2L12 16.9 6.4 20l1.3-6.2L3 9.5l6.3-.7L12 3z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.3-9.3C1.4 7.4 3.6 4.5 6.8 4.5c2 0 3.7 1.1 5.2 3 1.5-1.9 3.2-3 5.2-3 3.2 0 5.4 2.9 4.1 6.2C19.5 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v2M17 21h4M21 18h-2"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2.5l2.3 11.5h10.7L21 7H7"/><circle cx="9.5" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5v-7z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c.5-3.6 3-5.7 6.2-5.7s5.7 2.1 6.2 5.7"/><path d="M15.5 4.9a3.4 3.4 0 0 1 0 6.2M17.8 14.6c2.3.7 3.6 2.5 4 5.4"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5l2.3 6.9L21 11.7l-6.7 2.3L12 21.5l-2.3-7.5L3 11.7l6.7-2.3L12 2.5z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 1.8 20.5h20.4L12 3z"/><path d="M12 10v5M12 17.8v.4"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 2.5V6M15 2.5V6M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 3a6.5 6.5 0 0 0-4 11.6c.9.7 1.5 1.4 1.5 2.4h5c0-1 .6-1.7 1.5-2.4A6.5 6.5 0 0 0 12 3z"/><path d="M10 20.5h4"/></symbol>
+  <symbol id="i-feather" viewBox="0 0 24 24"><path d="M20.5 3.5C16 3 9.5 5.5 7 11l-3.5 9.5L13 17c5.5-2.5 8-9 7.5-13.5z"/><path d="M7 11l6 6"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><rect x="1.5" y="6" width="13" height="11" rx="1.5"/><path d="M14.5 9h4l3 3v5h-7z"/><circle cx="6" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></symbol>
+</defs></svg>
+
+<nav class="topbar" aria-label="Quick navigation">
+  <span class="brand"><span class="dot" aria-hidden="true"></span>METAPOD</span>
+  <span style="color:var(--faint)">TAMPINES AI EXHIBITION</span>
+  <span class="gap"></span>
+  <a href="#products">Products</a>
+  <a href="#compare">Compare</a>
+  <a href="#faq">FAQ</a>
+  <a href="#visit">Visit us</a>
+  <a class="shopcta" href="#buy">Shop ▸</a>
+</nav>
+
+<header class="hero">
+  <p class="org">Our Tampines Hub · Metapod Booth · in partnership with NCS</p>
+  <h1>The AI line-up<span class="thin">Tampines AI Exhibition 2026</span></h1>
+  <p class="sub">Six standout AI devices, all in one place. <b>Note-takers that write your meetings for you</b>, a <b>companion robot for the whole family</b>, and <b>earbuds that double as an AI recorder</b>. Read everything at your own pace — then buy on iShopChangi and have it delivered home.</p>
+  <div class="badges">
+    <span class="badge" id="evStatus"><svg class="ic"><use href="#i-clock"/></svg><span><b>19–21 June 2026</b> · 12pm–8pm</span></span>
+    <span class="badge"><svg class="ic"><use href="#i-pin"/></svg><span><b>Our Tampines Hub</b> · Metapod booth</span></span>
+    <span class="badge gold"><svg class="ic"><use href="#i-qr"/></svg><span>Shop on <b>iShopChangi</b> · GST savings</span></span>
+  </div>
+  <div class="heroshop"><a class="bigshop" href="#products"><svg class="ic" style="width:18px;height:18px"><use href="#i-spark"/></svg>Explore the products</a></div>
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Steed AI Companion <i>▪</i></span><span>PLAUD Note Pro <i>▪</i></span><span>PLAUD NotePin S <i>▪</i></span><span>Soundcore Liberty 5 Pro Max <i>▪</i></span><span>iFLYTEK AINOTE 2 <i>▪</i></span><span>iFLYTEK AINOTE Air 2 <i>▪</i></span><span>Shop · iShopChangi · Save GST <i>▪</i></span>
+      <span>Steed AI Companion <i>▪</i></span><span>PLAUD Note Pro <i>▪</i></span><span>PLAUD NotePin S <i>▪</i></span><span>Soundcore Liberty 5 Pro Max <i>▪</i></span><span>iFLYTEK AINOTE 2 <i>▪</i></span><span>iFLYTEK AINOTE Air 2 <i>▪</i></span><span>Shop · iShopChangi · Save GST <i>▪</i></span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PRODUCTS ================= -->
+<section id="products">
+  <p class="kicker reveal">The line-up</p>
+  <h2 class="reveal">Six AI devices, explained</h2>
+  <p class="lede reveal">Tap any product to jump to it. Prices shown are Singapore retail references — <b>tap “Shop on iShopChangi” for the live price</b>, which reflects GST savings. Every product has an official video to watch too.</p>
+
+  <div class="pindex stagger" aria-label="Jump to product">
+    <a class="pidx" href="#c1"><span class="no">01</span><span class="nm">Steed AI Companion</span><span class="cat">Companion robot</span></a>
+    <a class="pidx" href="#c2"><span class="no">02</span><span class="nm">PLAUD Note Pro</span><span class="cat">AI note taker</span></a>
+    <a class="pidx" href="#c3"><span class="no">03</span><span class="nm">PLAUD NotePin S</span><span class="cat">Wearable recorder</span></a>
+    <a class="pidx" href="#c4"><span class="no">04</span><span class="nm">Liberty 5 Pro Max</span><span class="cat">Earbuds + AI case</span></a>
+    <a class="pidx" href="#c5"><span class="no">05</span><span class="nm">iFLYTEK AINOTE 2</span><span class="cat">E-Ink flagship</span></a>
+    <a class="pidx" href="#c6"><span class="no">06</span><span class="nm">AINOTE Air 2</span><span class="cat">8.2″ E-Ink tablet</span></a>
+  </div>
+
+  <!-- C1 STEED -->
+  <article class="prod reveal" id="c1">
+    <div class="pv"><span class="pvno">01 / 06</span><span class="pvbrand">Steed</span>
+      <img src="img/steed.jpg" alt="Steed AI companion robots in green, brown and pink fur finishes" loading="lazy"></div>
+    <div>
+      <span class="ptag">Companion Robot · for Kids &amp; Seniors</span>
+      <h3>Steed AI Emotional Companion Robot</h3>
+      <p class="oneliner">A friendly, Singapore-designed companion robot that talks, listens and keeps people company — a delightful buddy for children and a caring presence for seniors living alone.</p>
+      <div class="pricebar"><span class="price-live">See price on iShopChangi</span><span class="price-rrp">varies by configuration</span><span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST savings</span></div>
+      <div class="statgrid">
+        <div class="stat"><b>All ages</b><span>Kids &amp; seniors<br>a friend for everyone</span></div>
+        <div class="stat"><b>0</b><span>Apps to learn<br>just talk to it</span></div>
+        <div class="stat"><b>24/7</b><span>Companionship<br>it starts the chat</span></div>
+        <div class="stat"><b>SG</b><span>Made in Singapore<br>est. 2022</span></div>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-mic"/></svg>Natural voice — no screen</span>
+        <span class="chip"><svg class="ic"><use href="#i-heart"/></svg>Cute, friendly design</span>
+        <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>Eldercare line · SOS + monitoring</span>
+      </div>
+      <p class="lab"><svg class="ic"><use href="#i-users"/></svg>Lovely for</p>
+      <div class="personas">
+        <span class="persona">🧒 Children &amp; young kids</span>
+        <span class="persona">👵 Parents living alone</span>
+        <span class="persona">👨‍👩‍👧 The whole family</span>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/steed-ai-emotional-companion-robot-mp00877705" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>Shop on iShopChangi</a>
+        <a class="plink vid" href="https://steedtech.sg/?product/120" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>About Steed</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- C2 NOTE PRO -->
+  <article class="prod reveal" id="c2">
+    <div class="pv"><span class="pvno">02 / 06</span><span class="pvbrand">PLAUD</span>
+      <img src="img/note-pro.webp" alt="PLAUD Note Pro close-up showing battery display and record button" loading="lazy"></div>
+    <div>
+      <span class="ptag">AI Note Taker · PLAUD Flagship</span>
+      <h3>PLAUD Note Pro <small>(with black magnetic case)</small></h3>
+      <p class="oneliner">A credit-card-thin AI recorder that snaps to your phone, captures meetings and phone calls, and turns them into transcripts, summaries and to-do lists automatically.</p>
+      <div class="pricebar"><span class="price-rrp">SG RRP <s>S$259</s></span><span class="price-live">See live price on iShopChangi</span><span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST savings</span></div>
+      <div class="statgrid">
+        <div class="stat"><b>50hr</b><span>One-press<br>recording</span></div>
+        <div class="stat"><b>112</b><span>Languages<br>transcribed</span></div>
+        <div class="stat"><b>2.99mm</b><span>Thin · 30g<br>snaps to phone</span></div>
+        <div class="stat"><b>5m</b><span>Voice pickup<br>4 mics + AI</span></div>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-mic"/></svg>Records phone calls + meetings</span>
+        <span class="chip"><svg class="ic"><use href="#i-chip"/></svg>0.95″ AMOLED · 64GB</span>
+        <span class="chip"><svg class="ic"><use href="#i-battery"/></svg>60-day standby</span>
+        <span class="chip"><svg class="ic"><use href="#i-bolt"/></svg>300 free transcription mins/mo</span>
+      </div>
+      <p class="lab"><svg class="ic"><use href="#i-users"/></svg>Great for</p>
+      <div class="personas">
+        <span class="persona">💼 Back-to-back meetings</span>
+        <span class="persona">📞 Recording work calls</span>
+        <span class="persona">🎓 Students &amp; researchers</span>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/plaud-note-pro-with-black-magnetic-case-mp00794707" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>Shop on iShopChangi</a>
+        <a class="plink vid" href="https://youtu.be/KeUKbw2DeRs" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Watch video</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- C3 NOTEPIN S -->
+  <article class="prod reveal" id="c3">
+    <div class="pv"><span class="pvno">03 / 06</span><span class="pvbrand">PLAUD</span>
+      <img src="img/notepin-s.webp" alt="PLAUD NotePin S held between two fingers" loading="lazy"></div>
+    <div>
+      <span class="ptag">Wearable AI Note Taker</span>
+      <h3>PLAUD NotePin S</h3>
+      <p class="oneliner">The wearable one — a feather-light AI recorder you wear as a pin, clip, necklace or wristband. Long-press to record hands-free; the app writes it all up for you.</p>
+      <div class="pricebar"><span class="price-rrp">SG RRP <s>S$249</s></span><span class="price-live">See live price on iShopChangi</span><span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST savings</span></div>
+      <div class="statgrid">
+        <div class="stat"><b>17.4g</b><span>Featherweight<br>wear all day</span></div>
+        <div class="stat"><b>20hr</b><span>Recording<br>40-day standby</span></div>
+        <div class="stat"><b>×4</b><span>Wearing styles<br>all in the box</span></div>
+        <div class="stat"><b>112</b><span>Languages<br>transcribed</span></div>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-star"/></svg>Press to Highlight key moments</span>
+        <span class="chip"><svg class="ic"><use href="#i-chip"/></svg>64GB on-device</span>
+        <span class="chip"><svg class="ic"><use href="#i-feather"/></svg>Wristband · clip · pin · lanyard</span>
+      </div>
+      <p class="lab"><svg class="ic"><use href="#i-users"/></svg>Great for</p>
+      <div class="personas">
+        <span class="persona">🏃 On the move, hands full</span>
+        <span class="persona">🎓 Lectures &amp; site visits</span>
+        <span class="persona">🤝 Networking &amp; consultations</span>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/plaud-notepin-s-mp00873091" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>Shop on iShopChangi</a>
+        <a class="plink vid" href="https://youtu.be/RBREYDEblsg" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Watch video</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== PLAUD ecosystem strip ===== -->
+  <div class="plaudstrip card reveal" id="plaud-eco">
+    <span class="kicker">PLAUD · Amplify Human Intelligence</span>
+    <h3>The smart app behind both PLAUD devices</h3>
+    <p>The <b>Note Pro</b> and <b>NotePin S</b> share the same PLAUD Intelligence app — so whichever you choose, you get all of this.</p>
+    <div class="statgrid">
+      <div class="stat"><b>No.1</b><span>World's all-scenario<br>AI note taker</span></div>
+      <div class="stat"><b>112</b><span>App languages<br>speaker labels</span></div>
+      <div class="stat"><b>10,000+</b><span>Summary templates<br>sales · legal · medical…</span></div>
+      <div class="stat"><b>300</b><span>Free mins/mo forever<br>paid tiers scale up</span></div>
+    </div>
+    <p class="lab"><svg class="ic"><use href="#i-shield"/></svg>Private &amp; certified</p>
+    <div class="chips">
+      <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>ISO 27001</span>
+      <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>ISO 27701</span>
+      <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>SOC 2 Type II</span>
+      <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>HIPAA</span>
+      <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>GDPR</span>
+      <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>TÜV SÜD</span>
+    </div>
+    <p class="lab"><svg class="ic"><use href="#i-star"/></svg>Award-winning design</p>
+    <div class="chips">
+      <span class="chip"><svg class="ic"><use href="#i-star"/></svg>iF Design 2024</span>
+      <span class="chip"><svg class="ic"><use href="#i-star"/></svg>Good Design 2024</span>
+      <span class="chip"><svg class="ic"><use href="#i-star"/></svg>Red Dot 2024</span>
+      <span class="chip"><svg class="ic"><use href="#i-star"/></svg>Red Dot 2025</span>
+    </div>
+    <p class="lab"><svg class="ic"><use href="#i-spark"/></svg>What the app does for you</p>
+    <div class="chips">
+      <span class="chip"><svg class="ic"><use href="#i-spark"/></svg>Auto transcript + AI summary</span>
+      <span class="chip"><svg class="ic"><use href="#i-bolt"/></svg>AutoFlow · emails your notes</span>
+      <span class="chip"><svg class="ic"><use href="#i-bulb"/></svg>Ask Plaud · question your notes</span>
+      <span class="chip"><svg class="ic"><use href="#i-globe"/></svg>Export in 27+ formats</span>
+      <span class="chip"><svg class="ic"><use href="#i-chip"/></svg>Plaud Desktop · online meetings</span>
+    </div>
+  </div>
+
+  <!-- C4 LIBERTY -->
+  <article class="prod reveal" id="c4">
+    <div class="pv"><span class="pvno">04 / 06</span><span class="pvbrand">Soundcore</span>
+      <img src="img/liberty-5-pro-max.jpeg" alt="Soundcore Liberty 5 Pro Max case with AMOLED touchscreen and earbuds, held in a hand" loading="lazy"></div>
+    <div>
+      <span class="ptag">ANC Earbuds + AI Note-Taker Case</span>
+      <h3>Soundcore Liberty 5 Pro Max</h3>
+      <p class="oneliner">Flagship noise-cancelling earbuds whose charging case has a touchscreen and its own microphone — leave it on the table and it records and summarises your meeting. Two gadgets in one.</p>
+      <div class="pricebar"><span class="price-rrp">SG launch <s>S$299</s></span><span class="price-live">See live price on iShopChangi</span><span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST savings</span></div>
+      <div class="statgrid">
+        <div class="stat"><b>1.78″</b><span>AMOLED touch case<br>records &amp; summarises</span></div>
+        <div class="stat"><b>No.1</b><span>Guinness record<br>speech quality</span></div>
+        <div class="stat"><b>2×</b><span>ANC depth<br>vs last flagship</span></div>
+        <div class="stat"><b>28hr</b><span>Total battery<br>6.5hr per charge</span></div>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-globe"/></svg>Real-time translation</span>
+        <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>AES-256 · IP55 sweatproof</span>
+        <span class="chip"><svg class="ic"><use href="#i-bolt"/></svg>120 free AI mins/mo for 24 months</span>
+      </div>
+      <p class="lab"><svg class="ic"><use href="#i-users"/></svg>Great for</p>
+      <div class="personas">
+        <span class="persona">🎧 Premium earbud shoppers</span>
+        <span class="persona">✈️ Commuters &amp; travellers</span>
+        <span class="persona">📣 Calls in noisy places</span>
+      </div>
+      <div class="honesty"><svg class="ic"><use href="#i-alert"/></svg><span><b>Good to know:</b> the case records <b>in-person audio only</b> — not phone or online calls. If you need to record calls, a PLAUD device is the one for that.</span></div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/soundcore-liberty-5-pro-max---earbuds-with-ai-note-taker-smart-case-mp00891812.html" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>Shop on iShopChangi</a>
+        <a class="plink vid" href="https://youtu.be/DfPw-D4WCDQ" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Watch video</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- C5 AINOTE 2 -->
+  <article class="prod reveal" id="c5">
+    <div class="pv"><span class="pvno">05 / 06</span><span class="pvbrand">iFLYTEK</span>
+      <img src="img/ainote-2.webp" alt="Professional at a desk using the iFLYTEK AINOTE 2 paper tablet alongside laptop and phone" loading="lazy"></div>
+    <div>
+      <span class="ptag">E-Ink AI Paper Tablet · Flagship</span>
+      <h3>iFLYTEK AINOTE 2</h3>
+      <p class="oneliner">iFLYTEK's newest and thinnest E-Ink writing tablet. It feels like real paper, records the room while you write, and links your handwriting to the audio — tap a word to hear what was said at that moment.</p>
+      <div class="pricebar"><span class="price-live">See price on iShopChangi</span><span class="price-rrp">flagship tier</span><span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST savings</span></div>
+      <div class="statgrid">
+        <div class="stat"><b>No.1</b><span>Thinnest iFLYTEK<br>flagship yet</span></div>
+        <div class="stat"><b>LLM</b><span>Latest AI<br>built in</span></div>
+        <div class="stat"><b>TAP</b><span>A word → hear<br>that moment</span></div>
+        <div class="stat"><b>0</b><span>Glare<br>pure paper feel</span></div>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-mic"/></svg>Records while you write</span>
+        <span class="chip"><svg class="ic"><use href="#i-spark"/></svg>AI summaries &amp; AI search</span>
+        <span class="chip"><svg class="ic"><use href="#i-pen"/></svg>Paper-feel E-Ink</span>
+      </div>
+      <p class="lab"><svg class="ic"><use href="#i-users"/></svg>Great for</p>
+      <div class="personas">
+        <span class="persona">🖊 People who love handwriting</span>
+        <span class="persona">📊 Executives &amp; power users</span>
+        <span class="persona">📚 Heavy note-takers</span>
+      </div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/iflytek-ainote-2-mp00867833" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>Shop on iShopChangi</a>
+        <a class="plink vid" href="https://youtu.be/UCwhHaNuTUo" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Watch video</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- C6 AINOTE AIR 2 -->
+  <article class="prod reveal" id="c6">
+    <div class="pv"><span class="pvno">06 / 06</span><span class="pvbrand">iFLYTEK</span>
+      <img src="img/ainote-air-2.webp" alt="Hands holding the iFLYTEK AINOTE Air 2 showing handwritten notes and templates" loading="lazy"></div>
+    <div>
+      <span class="ptag">E-Ink AI Paper Tablet · 8.2″ Portable</span>
+      <h3>iFLYTEK AINOTE Air 2</h3>
+      <p class="oneliner">A portable 8.2″ E-Ink notebook that listens while you write — live voice-to-text, instant handwriting-to-text, AI summaries, and about a week of battery. Everything a paper notebook should have become.</p>
+      <div class="pricebar"><span class="price-rrp">SG retail ref <s>S$549</s></span><span class="price-live">See live price on iShopChangi</span><span class="gstchip"><svg class="ic" style="width:12px;height:12px"><use href="#i-qr"/></svg>GST savings</span></div>
+      <div class="statgrid">
+        <div class="stat"><b>8.2″</b><span>E-Ink display<br>293 PPI</span></div>
+        <div class="stat"><b>17</b><span>Voice languages<br>live transcription</span></div>
+        <div class="stat"><b>83</b><span>Handwriting<br>languages</span></div>
+        <div class="stat"><b>7d</b><span>Battery life<br>108-day standby</span></div>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="ic"><use href="#i-pen"/></svg>4096-level pressure stylus</span>
+        <span class="chip"><svg class="ic"><use href="#i-check"/></svg>Symbols become to-dos</span>
+        <span class="chip"><svg class="ic"><use href="#i-chip"/></svg>PDF/ePub annotation · cloud sync</span>
+      </div>
+      <p class="lab"><svg class="ic"><use href="#i-users"/></svg>Great for</p>
+      <div class="personas">
+        <span class="persona">🎓 Students — the value pick</span>
+        <span class="persona">🌏 Multilingual households</span>
+        <span class="persona">💼 Paper-lovers on a budget</span>
+      </div>
+      <div class="honesty"><svg class="ic"><use href="#i-alert"/></svg><span><b>Good to know:</b> live voice transcription and handwriting-to-text run one at a time — finish one, then start the other.</span></div>
+      <div class="plinks">
+        <a class="plink buy" href="https://www.ishopchangi.com/en/product/iflytek-ainote-air-2-mp00866914" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cart"/></svg>Shop on iShopChangi</a>
+        <a class="plink vid" href="https://youtu.be/covNhxCefto" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg>Watch video</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ================= COMPARE ================= -->
+<section id="compare">
+  <p class="kicker reveal">At a glance</p>
+  <h2 class="reveal">Which one is right for you?</h2>
+  <p class="lede reveal">A quick side-by-side of all six. Still unsure? Pop by the booth and try them — our team will help you choose.</p>
+  <div class="card cmpwrap reveal" style="padding:8px 18px 18px">
+    <table>
+      <thead><tr><th></th><th>Steed Companion</th><th>Note Pro</th><th>NotePin S</th><th>Liberty 5 Pro Max</th><th>AINOTE 2</th><th>AINOTE Air 2</th></tr></thead>
+      <tbody>
+        <tr><td>What it is</td><td>Companion robot</td><td>Card-thin AI recorder</td><td>Wearable AI recorder</td><td>ANC earbuds + AI case</td><td>Flagship E-Ink tablet</td><td>8.2″ E-Ink tablet</td></tr>
+        <tr><td>Best for</td><td>Families · kids &amp; seniors</td><td>Meetings &amp; phone calls</td><td>On-the-move, hands-free</td><td>Music + meeting notes</td><td>Handwriting + top AI</td><td>Students &amp; value seekers</td></tr>
+        <tr><td>Star feature</td><td>Talks &amp; keeps company</td><td>Records calls + meetings</td><td>Wear it, Press to Highlight</td><td>Case records the room</td><td>Tap ink → hear the moment</td><td>Live transcribe + handwriting</td></tr>
+        <tr><td>Recording</td><td>—</td><td>Up to 50 hrs</td><td>Up to 20 hrs</td><td>In-person (via case)</td><td>While you write</td><td>While you write</td></tr>
+        <tr><td>Languages</td><td>Conversational</td><td>112 transcription</td><td>112 transcription</td><td>Transcribe + translate</td><td>Multi-language</td><td>17 voice / 83 handwriting</td></tr>
+        <tr><td>Wear / carry</td><td>Home device</td><td>Snaps to phone</td><td>Pin · clip · necklace · band</td><td>In your ears / pocket</td><td>Slim tablet</td><td>Light 8.2″ tablet</td></tr>
+        <tr><td>Price (ref)</td><td>iShopChangi</td><td>RRP S$259</td><td>RRP S$249</td><td>Launch S$299</td><td>iShopChangi</td><td>Retail S$549</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <p class="kicker reveal">Good to know</p>
+  <h2 class="reveal">Frequently asked</h2>
+  <p class="lede reveal">Tap a question to read the answer.</p>
+  <div class="faq stagger">
+    <div class="qa">
+      <button class="qa-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>How do I buy — and what does “GST savings” mean?</button>
+      <div class="qa-a-wrap"><div class="qa-a"><div class="qa-a-inner">Every product is sold on <b>iShopChangi</b>, Changi Airport's official online store. Because it's the airport channel, prices come with <b>GST savings versus regular retail</b>. Tap any “Shop on iShopChangi” button (or scan the QR at the booth), pay on your phone, and it's delivered to your home. No payment is taken at the booth.</div></div></div>
+    </div>
+    <div class="qa">
+      <button class="qa-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>Are the AI note-takers a subscription?</button>
+      <div class="qa-a-wrap"><div class="qa-a"><div class="qa-a-inner">No subscription is required. PLAUD includes <b>300 free transcription minutes every month, forever</b> — enough for most people. Heavier users can upgrade to a paid tier, but it's optional. The Soundcore Liberty case includes <b>120 free AI minutes a month for 24 months</b>.</div></div></div>
+    </div>
+    <div class="qa">
+      <button class="qa-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>Can these record phone calls and online meetings?</button>
+      <div class="qa-a-wrap"><div class="qa-a"><div class="qa-a-inner"><b>PLAUD Note Pro</b> records both phone calls and in-person conversations, and <b>Plaud Desktop</b> captures online meetings on your computer. The <b>Soundcore Liberty case records in-person audio only</b> — not phone or online calls. If recording calls matters to you, choose a PLAUD device.</div></div></div>
+    </div>
+    <div class="qa">
+      <button class="qa-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>What languages do they understand?</button>
+      <div class="qa-a-wrap"><div class="qa-a"><div class="qa-a-inner">PLAUD transcribes in <b>112 languages</b> with speaker labels — great for multilingual Singapore. The AINOTE Air 2 does live voice-to-text in <b>17 languages</b> and converts handwriting in <b>83</b>. The Soundcore Liberty offers real-time translation.</div></div></div>
+    </div>
+    <div class="qa">
+      <button class="qa-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>Is my data private?</button>
+      <div class="qa-a-wrap"><div class="qa-a"><div class="qa-a-inner">PLAUD is built to enterprise standards — <b>ISO 27001 &amp; 27701, SOC 2 Type II, HIPAA and GDPR</b> compliant. Recordings are captured on the device, and cloud sync is optional: you can keep everything local and export or delete anytime.</div></div></div>
+    </div>
+    <div class="qa">
+      <button class="qa-q" aria-expanded="false"><svg class="ic"><use href="#i-plus"/></svg>Is the Steed robot only for the elderly?</button>
+      <div class="qa-a-wrap"><div class="qa-a"><div class="qa-a-inner">Not at all — it's an <b>all-ages companion</b>. Children love it as a friendly, talking buddy that isn't another screen, and it's wonderful company for seniors living alone. Same cute robot, two happy audiences.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW TO BUY ================= -->
+<section id="buy">
+  <p class="kicker reveal">Taking one home</p>
+  <h2 class="reveal">How to buy</h2>
+  <p class="lede reveal">No payment happens at the booth — checkout is quick and on your own phone.</p>
+  <div class="steps stagger">
+    <div class="stepc card"><div class="n">01</div><h3>Tap or scan</h3><p>Tap “Shop on iShopChangi” on any product here, or scan the QR code at the Metapod booth.</p></div>
+    <div class="stepc card"><div class="n">02</div><h3>iShopChangi opens</h3><p>It's Changi Airport's official store — the product page shows the live price, already with GST savings.</p></div>
+    <div class="stepc card"><div class="n">03</div><h3>Pay &amp; relax</h3><p>Check out on your phone and have it delivered to your home. Keep this page to compare anytime.</p></div>
+  </div>
+  <div class="buybanner reveal">
+    <span>💛 <b>Ready when you are.</b> Browse the full official store and find every product in one place.</span>
+    <a class="bigshop" href="https://www.ishopchangi.com/en/" target="_blank" rel="noopener"><svg class="ic" style="width:18px;height:18px"><use href="#i-cart"/></svg>Visit iShopChangi</a>
+  </div>
+</section>
+
+<!-- ================= VISIT ================= -->
+<section id="visit">
+  <p class="kicker reveal">Come say hello</p>
+  <h2 class="reveal">See them in person</h2>
+  <p class="lede reveal">Nothing beats holding the device yourself. Visit the Metapod booth and try every one.</p>
+  <div class="findgrid stagger">
+    <div class="findcard card"><h3><svg class="ic"><use href="#i-pin"/></svg>Where</h3><p>Metapod booth, <b>Interactive Experience zone</b><br>Our Tampines Hub, 1 Tampines Walk</p></div>
+    <div class="findcard card"><h3><svg class="ic"><use href="#i-clock"/></svg>When</h3><p><b>19–21 June 2026</b><br>12pm – 8pm daily</p></div>
+    <div class="findcard card"><h3><svg class="ic"><use href="#i-spark"/></svg>What to expect</h3><p>Try all six devices hands-on, get a live demo, and have the team help you pick the right one.</p></div>
+    <div class="findcard card"><h3><svg class="ic"><use href="#i-truck"/></svg>Buying</h3><p>Scan the QR to buy on <b>iShopChangi</b> with GST savings — delivered to your home, no carrying bags around.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p class="fbrand">METAPOD × TAMPINES AI EXHIBITION</p>
+  Our Tampines Hub · <b>19–21 June 2026, 12pm–8pm</b><br>
+  Read at your leisure — and shop anytime on <a href="https://www.ishopchangi.com/en/" target="_blank" rel="noopener">iShopChangi</a> with GST savings.
+</footer>
+
+<script>
+/* event status badge */
+(function(){
+  var start=new Date('2026-06-19T12:00:00+08:00'), end=new Date('2026-06-21T20:00:00+08:00'), now=new Date();
+  var b=document.getElementById('evStatus');
+  if(now>=start && now<=end){b.classList.add('live');b.innerHTML='<svg class="ic"><use href="#i-spark"/></svg><span><b>Happening now</b> · until 21 June, 8pm</span>';}
+  else if(now<start){var d=Math.ceil((start-now)/86400000);b.querySelector('span').innerHTML='<b>19–21 June 2026</b> · in '+d+' day'+(d>1?'s':'');}
+})();
+
+/* scroll reveal */
+(function(){
+  var els=document.querySelectorAll('.reveal,.stagger');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{rootMargin:'0px 0px -60px 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e);});
+})();
+
+/* faq accordion */
+document.querySelectorAll('.qa-q').forEach(function(b){
+  b.addEventListener('click',function(){
+    var open=b.getAttribute('aria-expanded')==='true';
+    b.setAttribute('aria-expanded',String(!open));
+    b.closest('.qa').classList.toggle('open',!open);
+  });
+});
+</script>
+</body>
+</html>
